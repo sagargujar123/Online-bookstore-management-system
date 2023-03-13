@@ -1,0 +1,28 @@
+.container-fluid{
+    /* background-color: rgb(31, 234, 234); */
+    background-color: white;
+}
+.content {
+    padding: 25px 16px 16px;
+}
+
+mat-card{
+    box-shadow: 2px 5px 10px rgb(190, 189, 189);
+    border: 1px solid rgb(220, 217, 217);
+    height: 433px;
+}
+
+mat-card:hover {
+    box-shadow: 2px 4px 12px rgb(65, 64, 64);
+    /* transition: all 0.2s linear 0s; */
+    transform: scale(1.02);
+    z-index: 1;
+  }
+
+.bookName{
+    height: 45px;
+}
+
+/* .content> mat-card {
+    height: 600px;
+} */

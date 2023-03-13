@@ -1,0 +1,77 @@
+{
+  "logindetails": [
+    {
+      "username": "one",
+      "password": "123",
+      "id": 1
+    },
+    {
+      "username": "two",
+      "password": "2345",
+      "id": 2
+    }
+  ],
+  "signupdetails": [
+    {
+      "username": "sagar",
+      "password": "2345",
+      "email": "sagargujar12@gmail.com",
+      "contact": 8968578758,
+      "id": 1
+    },
+    {
+      "username": "vishal",
+      "email": "vishal@123gmail.com",
+      "contact": 8984948394,
+      "password": "122",
+      "id": 2
+    }
+  ],
+  "books": [
+    {
+      "bookName": "Oulines of Mahayana bhuddhism",
+      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789387496699/sm_9789387496699_040520221653921.jpg",
+      "price": "300",
+      "author": "swami vivekanand",
+      "status": "Available",
+      "availableQty": 3,
+      "id": 1
+    },
+    {
+      "bookName": "Man and His becoming according to the Vedanta",
+      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789387496743/sm_9789387496743_040520221653863.jpg",
+      "price": "400",
+      "author": "Rene Guenon",
+      "status": "Available",
+      "availableQty": 3,
+      "id": 2
+    },
+    {
+      "bookName": "Siddhantahsundarah",
+      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789380829906/sm_9789380829906_040520221651374.jpg",
+      "price": "400",
+      "author": "Jagapati Sarkar",
+      "status": "Available",
+      "availableQty": 3,
+      "id": 3
+    },
+    {
+      "bookName": "Atula Sanskritam Class 5",
+      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789385948510/sm_9789385948510.jpg",
+      "price": "400",
+      "author": "Keshav Dev",
+      "status": "Available",
+      "availableQty": 3,
+      "id": 4
+    },
+    {
+      "bookName": "How the Secret Changed my Life",
+      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789390924363/sm_9789390924363_230220221212843.jpg",
+      "price": "400",
+      "author": "Rhonda Byrne",
+      "status": "Available",
+      "availableQty": 3,
+      "id": 5
+    }
+  ]
+}

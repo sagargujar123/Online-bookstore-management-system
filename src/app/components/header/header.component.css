@@ -1,0 +1,25 @@
+/* .navbar{
+    background-color: #23c3a3;
+} */
+
+.navbar-toggler{
+    border: 1px solid rgb(201, 199, 199);
+}
+
+.navbar-toggler:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.fixed-top{
+    position: sticky;
+}
+
+
+/* .search-icon {
+    position: absolute;
+    z-index: 10;
+    right: 26%;
+    top: 28px;
+    color: grey;
+} */

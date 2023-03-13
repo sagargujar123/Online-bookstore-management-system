@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top shadow-sm py-0">
+  <div class="container-fluid">
+    <div class="navbar-brand d-flex align-items-center">
+      <img src="../../assets/images/books.jpg" class="mx-0 py-0 rounded-circle" alt="" width="80px" height="70px">
+      <h4 class="px-0 fs-1 text-success"><i>Oorjaa</i></h4>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class=""><mat-icon>menu</mat-icon></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="books">Home</a>
+        </li>
+      </ul>
+      <button routerLink="cart" class="btn btn-success py-2 mb-1">
+        <i style="font-size: 20px;" class="fas fa-cart-plus"></i>
+        <div style="font-size: 9px;" class="badge bg-danger">3</div>
+      </button>
+    </div>
+  </div>
+</nav>
