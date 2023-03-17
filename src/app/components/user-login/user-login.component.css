@@ -1,4 +1,4 @@
-  .container-fluid{
+  .container-fluid {
     /* background-color: rgb(36, 253, 217); */
     background-image: url('https://media.istockphoto.com/id/108219664/photo/books-flying-through-abandoned-hallway.jpg?b=1&s=170667a&w=0&k=20&c=Jkbn-T9s8iFiBLAcVvrX_aZa9dCQTIqpVxICtFjW94o=');
     background-repeat: no-repeat;
@@ -6,26 +6,27 @@
     background-position: center;
     height: 100%;
   }
-  .card {
-    width: 330px;
-    height: auto;
-    text-align: center;
-    margin-top: 5%;
-    border: 1px solid rgb(125, 120, 120);
-    border-radius: 8px;
-    box-shadow: 0px 0px 15px -2px rgb(123, 123, 123); 
-  }
-  .mat-form-field{
-    margin-top: 27px;
-  }
-  mat-form-field{
-    width: 100%;
-    margin-top: 10px;
+
+  .surface-card {
+    border: 1px solid rgb(204, 201, 201);
   }
 
-  /* rgb(245, 240, 240) */
-  /* box-shadow: 3px 3px 8px rgb(196, 194, 194); */
-   /* background-color: rgb(255, 255, 133); */
-    /* background-color: #1bf4c8; */
-  
-  
+  .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border: 2px solid;
+    border-color: #1a6bed;
+  }
+
+  .p-input-icon-left>i,
+  .p-input-icon-right>i {
+    position: absolute;
+    top: 40%;
+    color: black;
+    margin-top: -0.5rem;
+  }
+
+  .p-button:focus {
+    box-shadow: none;
+  }

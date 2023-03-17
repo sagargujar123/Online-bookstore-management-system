@@ -8,12 +8,15 @@ import { MaterialModule } from './material/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { UserLoginComponent } from './components/user-login/user-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { BooksComponent } from './components/books/books.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { BooksComponent } from './components/books/books.component';
     UserLoginComponent,
     UserSignupComponent,
     BooksComponent,
+    BookDetailsComponent,
   ],
   imports: [
     BrowserModule,

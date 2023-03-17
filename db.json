@@ -1,30 +1,25 @@
 {
   "logindetails": [
     {
-      "username": "one",
-      "password": "123",
+      "username": "jitendra",
+      "email": "email@gmail.com",
+      "contact": 9876500022,
+      "password": "Pass2@",
       "id": 1
     },
     {
-      "username": "two",
-      "password": "2345",
-      "id": 2
-    }
-  ],
-  "signupdetails": [
-    {
-      "username": "sagar",
-      "password": "2345",
-      "email": "sagargujar12@gmail.com",
-      "contact": 8968578758,
-      "id": 1
+      "username": "harshalpatil134",
+      "email": "harshal123@gmail.com",
+      "contact": 8740037700,
+      "password": "Pass@321",
+      "id": 6
     },
     {
-      "username": "vishal",
-      "email": "vishal@123gmail.com",
-      "contact": 8984948394,
-      "password": "122",
-      "id": 2
+      "username": "jitendra",
+      "email": "paa@gmail.com",
+      "contact": 9888888888,
+      "password": "A@1345",
+      "id": 7
     }
   ],
   "books": [

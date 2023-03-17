@@ -6,16 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginServiceService {
-  private baseUrl="http://localhost:3000/logindetails";
-  private Url="http://localhost:3000/signupdetails";
+  private baseUrl="https://bookstore-mnmt-system.osc-fr1.scalingo.io";
 
   constructor(private http:HttpClient) { }
 
-  sendLoginData(data:any){
-    return this.http.post(`${this.baseUrl}`,data);
+  sendLoginData(data:any):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}/user/login`,data);
   }
 
-  sendSignUpData(data:any){
-    return this.http.post(`${this.Url}`,data);
+  sendSignUpData(data:any):Observable<any>{
+    return this.http.post<any>(`${this.baseUrl}/user/signup`,data);
   }
 }

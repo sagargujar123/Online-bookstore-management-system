@@ -9,6 +9,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
+import {AccordionModule} from 'primeng/accordion';
+import {StyleClassModule} from 'primeng/styleclass';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import {CardModule} from 'primeng/card'
+
 const materialComponents = [
   MatButtonModule,
   MatFormFieldModule,
@@ -17,6 +24,13 @@ const materialComponents = [
   MatGridListModule,
   MatIconModule,
   MatListModule,
+
+  AccordionModule,
+  StyleClassModule,
+  InputTextModule,
+  ButtonModule,
+  PasswordModule,
+  CardModule
 ];
 
 

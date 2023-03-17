@@ -12,4 +12,8 @@ private baseUrl='http://localhost:3000/books';
   getBookList(){
     return this.http.get(`${this.baseUrl}`);
   }
+
+  getBookById(id:any){
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
 }

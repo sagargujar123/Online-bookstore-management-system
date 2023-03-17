@@ -1,28 +1,25 @@
-.container-fluid{
-    /* background-color: rgb(31, 234, 234); */
-    background-color: white;
-}
-.content {
-    padding: 25px 16px 16px;
-}
-
-mat-card{
-    box-shadow: 2px 5px 10px rgb(190, 189, 189);
-    border: 1px solid rgb(220, 217, 217);
-    height: 433px;
-}
-
-mat-card:hover {
-    box-shadow: 2px 4px 12px rgb(65, 64, 64);
-    /* transition: all 0.2s linear 0s; */
-    transform: scale(1.02);
-    z-index: 1;
+::ng-deep .p-card .p-card-body {
+    padding: 0rem !important;
+    padding-left: 1.25rem !important;
+    padding-bottom: 0rem !important;
+    padding-right: 1.25rem !important;
+  
   }
-
-.bookName{
+  
+  ::ng-deep .p-card .p-card-content {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+  }
+  
+  .bookName{
     height: 45px;
-}
-
-/* .content> mat-card {
-    height: 600px;
-} */
+  }
+  
+  p-card:hover {
+    box-shadow: 0px 5px 10px rgb(232, 229, 229);
+    transform: scale(1.04);
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  

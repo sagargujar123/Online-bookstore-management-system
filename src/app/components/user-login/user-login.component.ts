@@ -9,22 +9,23 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  hide = true;
   loginForm!: FormGroup;
 
   constructor(private formbuilder: FormBuilder, private loginService: LoginServiceService, private router: Router) { }
   
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
-      username: new FormControl('', [Validators.required, Validators.pattern('^[A-Za-z0-9]*$')]),
-      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[0-9])(?=.*[^\w\*])[^\s]{8,20}$')])
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$')])
     });
   }
 
   userLogin() {
     this.loginService.sendLoginData(this.loginForm.value).subscribe((result) => {
       console.log(result);
-      this.router.navigate(['/signup']);
+      this.router.navigate(['/books']);
+    },(error)=>{
+      console.log(error.error);
     });
   }
 }

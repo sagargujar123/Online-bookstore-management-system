@@ -1,39 +1,24 @@
-<!-- <div class="container">
-    <p class="h3 pt-3">books</p>
-    <mat-grid-list cols="4" rowHeight="390px" gutterSize="8px">
-        <div fxLayout="row wrap" fxLayoutGap="16px grid">
-            <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of [1,2,3,4,5,6]">
-                <mat-grid-tile>
-                    <mat-card style="width:300px; height: 380px;" class="bg-info">
-                        
-                    </mat-card>
-                </mat-grid-tile>
-            </div>
-        </div>
-    </mat-grid-list>
-</div> -->
 <div class="container-fluid">
-    <div class="content">
-        <div fxLayout="row wrap" fxLayoutGap="16px grid">
-            <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let book of books">
-                <mat-card>
-                    <img mat-card-image [src]="book.imageUrl" height="250px" class="p-2">
-                    <mat-card-content>
-                        <div class="bookName">
-                            <p class="h6">{{book.bookName}}</p>
-                        </div>
-                        
-                        <p class="text-secondary">by {{book.author}}</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-success pb-0">{{book.status}}</p>
-                            <p class="text-success pb-0">${{book.price}}</p>
-                        </div>
-                    </mat-card-content>
-                        <mat-card-actions class="mb-1">
-                            <button mat-raised-button color="accent" style="width:100%;">Add To Cart</button>
-                        </mat-card-actions>
-                </mat-card>
+    <div class="text-center mt-3">
+        <p class="h1" [style]="'color:#ff4081'">Welcome Here</p>
+    </div>
+    <div class="d-flex flex-row flex-wrap justify-content-center mt-4">
+        <p-card *ngFor="let book of books" [style]="{width: '255px', height:'420px'}"
+            styleClass="shadow-6 border rounded" routerLink="/bookdetails/{{book.id}}" class="mx-3 mb-4">
+            <ng-template pTemplate="header">
+                <div class="text-center py-3">
+                    <img alt="Card" [src]="book.imageUrl" [style]="{width:'225px', height:'260px'}">
+                </div>
+            </ng-template>
+            <div class="bookName">
+                <p class="h6">{{book.bookName}}</p>
             </div>
-        </div>
+
+            <p class="text-secondary">by {{book.author}}</p>
+            <div class="d-flex justify-content-between">
+                <p [style]="'color:#ff4081'" class="h6">{{book.status}}</p>
+                <p [style]="'color:#29a329'" class="h6">{{book.price | currency:"INR":"symbol"}}</p>
+            </div>
+        </p-card>
     </div>
 </div>
