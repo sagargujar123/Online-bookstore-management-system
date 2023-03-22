@@ -84,16 +84,6 @@
       "quantity": 1,
       "availableQuantity": 3,
       "id": 1
-    },
-    {
-      "bookName": "Siddhantahsundarah",
-      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789380829906/sm_9789380829906_040520221651374.jpg",
-      "price": "400",
-      "author": "Jagapati Sarkar",
-      "status": "Available",
-      "quantity": 1,
-      "availableQuantity": 3,
-      "id": 3
     }
   ],
   "order": [
