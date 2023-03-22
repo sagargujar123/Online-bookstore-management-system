@@ -10,11 +10,11 @@ export class LoginServiceService {
 
   constructor(private http:HttpClient) { }
 
-  sendLoginData(data:any):Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}/user/login`,data);
+  userLoginData(data:any):Observable<any>{
+    return this.http.post(`${this.baseUrl}/user/login`,data);
   }
 
-  sendSignUpData(data:any):Observable<any>{
-    return this.http.post<any>(`${this.baseUrl}/user/signup`,data);
+  userSignUpData(data:any):Observable<any>{
+    return this.http.post(`${this.baseUrl}/user/signup`,data);
   }
 }

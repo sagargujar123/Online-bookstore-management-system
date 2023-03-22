@@ -29,7 +29,8 @@
       "price": "300",
       "author": "swami vivekanand",
       "status": "Available",
-      "availableQty": 3,
+      "quantity": 1,
+      "availableQuantity": 3,
       "id": 1
     },
     {
@@ -38,7 +39,8 @@
       "price": "400",
       "author": "Rene Guenon",
       "status": "Available",
-      "availableQty": 3,
+      "quantity": 1,
+      "availableQuantity": 3,
       "id": 2
     },
     {
@@ -47,7 +49,8 @@
       "price": "400",
       "author": "Jagapati Sarkar",
       "status": "Available",
-      "availableQty": 3,
+      "quantity": 1,
+      "availableQuantity": 3,
       "id": 3
     },
     {
@@ -56,7 +59,8 @@
       "price": "400",
       "author": "Keshav Dev",
       "status": "Available",
-      "availableQty": 3,
+      "quantity": 1,
+      "availableQuantity": 3,
       "id": 4
     },
     {
@@ -65,8 +69,77 @@
       "price": "400",
       "author": "Rhonda Byrne",
       "status": "Available",
-      "availableQty": 3,
+      "quantity": 1,
+      "availableQuantity": 3,
       "id": 5
     }
+  ],
+  "cart": [
+    {
+      "bookName": "Oulines of Mahayana bhuddhism",
+      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789387496699/sm_9789387496699_040520221653921.jpg",
+      "price": "300",
+      "author": "swami vivekanand",
+      "status": "Available",
+      "quantity": 1,
+      "availableQuantity": 3,
+      "id": 1
+    },
+    {
+      "bookName": "Siddhantahsundarah",
+      "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789380829906/sm_9789380829906_040520221651374.jpg",
+      "price": "400",
+      "author": "Jagapati Sarkar",
+      "status": "Available",
+      "quantity": 1,
+      "availableQuantity": 3,
+      "id": 3
+    }
+  ],
+  "order": [
+    [
+      {
+        "bookName": "Oulines of Mahayana bhuddhism",
+        "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789387496699/sm_9789387496699_040520221653921.jpg",
+        "price": "300",
+        "author": "swami vivekanand",
+        "status": "Available",
+        "quantity": 2,
+        "availableQuantity": 3,
+        "id": 1
+      },
+      {
+        "bookName": "Siddhantahsundarah",
+        "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789380829906/sm_9789380829906_040520221651374.jpg",
+        "price": "400",
+        "author": "Jagapati Sarkar",
+        "status": "Available",
+        "quantity": 3,
+        "availableQuantity": 3,
+        "id": 3
+      }
+    ],
+    [
+      {
+        "bookName": "Oulines of Mahayana bhuddhism",
+        "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789387496699/sm_9789387496699_040520221653921.jpg",
+        "price": "300",
+        "author": "swami vivekanand",
+        "status": "Available",
+        "quantity": 1,
+        "availableQuantity": 3,
+        "id": 1
+      },
+      {
+        "bookName": "Siddhantahsundarah",
+        "imageUrl": "https://cdn01.sapnaonline.com/product_media/9789380829906/sm_9789380829906_040520221651374.jpg",
+        "price": "400",
+        "author": "Jagapati Sarkar",
+        "status": "Available",
+        "quantity": 1,
+        "availableQuantity": 3,
+        "id": 3
+      }
+    ]
   ]
 }

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Books } from '../shared/models/books';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +11,11 @@ private baseUrl='http://localhost:3000/books';
 
   constructor(private http:HttpClient) { }
   
-  getBookList(){
-    return this.http.get(`${this.baseUrl}`);
+  getAllBooks():Observable<Books[]>{
+    return this.http.get<Books[]>(`${this.baseUrl}`);
   }
 
-  getBookById(id:any){
-    return this.http.get(`${this.baseUrl}/${id}`);
+  getBookById(id:any):Observable<any>{
+    return this.http.get<Books>(`${this.baseUrl}/${id}`);
   }
 }

@@ -16,16 +16,21 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$')])
+      password: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9!@#$%^&*`.,\"]*$')])
     });
   }
-
+    
   userLogin() {
-    this.loginService.sendLoginData(this.loginForm.value).subscribe((result) => {
-      console.log(result);
-      this.router.navigate(['/books']);
-    },(error)=>{
-      console.log(error.error);
+    var formData = this.loginForm.value;
+    var data = {
+      email: formData.email,
+      password: formData.password
+    }
+
+    this.loginService.userLoginData(data).subscribe((response) => {
+      localStorage.setItem('token',response.token)
+      console.log(response);
+      this.router.navigate(['books']);
     });
   }
 }

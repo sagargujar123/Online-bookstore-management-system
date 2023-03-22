@@ -1,10 +1,11 @@
 <div class="container-fluid">
+    <p-toast [breakpoints]="{'576px': {width: '100%', right: '0', left: '0'}}"></p-toast>
     <div class="row justify-content-center">
         <div class="surface-card p-4 shadow-2 border-round  w-11 xs:w-2 sm:w-6 md:w-5 lg:w-3 mt-5">
             <div class="text-center mb-3">
                 <div class="text-600 text-2xl font-medium mb-3 text-blue-500">Sign In</div>
                 <span class="text-600 font-medium line-height-3">Don't have an account?</span>
-                <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" routerLink="/signup">Sign Up Now!</a>
+                <a class="font-medium ml-2 text-blue-500 cursor-pointer" routerLink="/signup">Sign Up Now!</a>
             </div>
 
             <form [formGroup]="loginForm" #form1="ngForm" (ngSubmit)="userLogin()">
@@ -17,11 +18,11 @@
                         class="w-full">
                 </span>
 
-                <small class="text-red-500"
+                <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('email')?.errors?.['required']) && (loginForm.get('email')?.touched)">
-                    Email should not blank</small>
-                <small class="text-red-500" *ngIf="loginForm.get('email')?.errors?.['email']">
-                    Email should be abc@gmail.com</small>
+                    Email required*</div>
+                <div class="form-text text-red-500" *ngIf="loginForm.get('email')?.errors?.['email']">
+                    Email should be abc@gmail.com</div>
 
 
                 <!-- password -->
@@ -32,12 +33,12 @@
                         required="required" maxlength="20" class="w-full">
                 </span>
 
-                <small class="text-red-500"
+                <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('password')?.errors?.['required']) && (loginForm.get('password')?.touched)">Password
-                    should not blank</small>
-                <small class="text-red-500" *ngIf="loginForm.get('password')?.errors?.['pattern']">Password should
-                    contain 6-8 characters,
-                    <br>One uppercase letter, One digit and<br>One special character</small>
+                    required*</div>
+                <div class="form-text text-red-500"
+                    *ngIf="(loginForm.get('password')?.errors?.['pattern'])">Password
+                    should not contain whitespaces</div>
 
                 <!-- sign in button -->
                 <div class="flex align-items-center justify-content-between mb-5 mt-3">

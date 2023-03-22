@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="my-3 fs-4">
+        <h4>Your Orders</h4>
+    </div>
+    <div class="row justify-content-center my-3">
+
+        <!-- book details -->
+        <div class="col-12 md:col-7 border-1 rounded bg-light m-2">
+            <div class="d-flex flex-row flex-wrap text-center align-items-center border mb-2 bg-white"
+                *ngFor="let book of orderedBooks">
+                <div class="col md:col-4">
+                    <img [src]="book.imageUrl"
+                        width="120px" height="150px" alt="">
+                </div>
+                <div class="col md:col-4">
+                    <h6 class="fs-5">{{book.bookName}}</h6>
+                </div>
+                <div class="col md:col-4">
+                    <p class="h6 text-success">{{book.quantity}} books</p>
+                    <h5>{{book.price}}</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- amount details -->
+        <div class="col-10 md:col-4 text-center align-items-center border-1 rounded mx-3 mt-2"
+            style="height: fit-content;">
+            <div class="mt-2 mb-3 ms-2 pb-3 border-bottom text-left">
+                <h4>Amount Details</h4>
+            </div>
+            <div class="row d-flex flex-row mx-2 border-bottom" *ngFor="let book of orderedBooks">
+                <div class="col">
+                    <p class="mb-1">{{book.bookName}}</p>
+                </div>
+                <div class="col">
+                    <p class="mb-1">{{book.price}}</p>
+                </div>
+            </div>
+            <div class="row d-flex flex-row m-2">
+                <div class="col">
+                    <h6 class="mb-1">Total Amount</h6>
+                </div>
+                <div class="col">
+                    <h6 class="mb-1">Total price</h6>
+                </div>
+            </div>
+
+            <!-- pay amount button -->
+            <div class="mx-2 mt-2 py-3 border-top">
+                <button pButton type="button" label="Pay Amount" icon="pi pi-check" iconPos="right"
+                    class="p-button-rounded p-button-raised p-button-warning" [ngStyle]="{width:'80%'}" (click)="payAmount()"></button>
+            </div>
+        </div>
+    </div>
+</div>
