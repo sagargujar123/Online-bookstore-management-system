@@ -1,0 +1,22 @@
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-width: none;
+    padding: 4px;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr >th {
+    text-align: center;
+    font-weight: 600;
+}
+
+.p-button.p-button-success:enabled:focus {
+    outline:none;
+    outline-offset: 0;
+    box-shadow: none;
+}
+.p-button-warning:enabled:focus {
+    outline:none;
+    outline-offset: 0;
+    box-shadow: none; 
+}

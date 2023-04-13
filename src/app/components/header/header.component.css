@@ -11,11 +11,24 @@
     box-shadow: none;
 }
 
-.fixed-top{
-    position: sticky;
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 
+.logoutBtn{
+    text-decoration: none;
+    color:rgb(186, 183, 183);
+    margin-right: 10px;
+}
 
+.logoutBtn:hover{
+    cursor: pointer;
+    color: white;
+}
 /* .search-icon {
     position: absolute;
     z-index: 10;

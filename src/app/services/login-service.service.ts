@@ -11,10 +11,10 @@ export class LoginServiceService {
   constructor(private http:HttpClient) { }
 
   userLoginData(data:any):Observable<any>{
-    return this.http.post(`${this.baseUrl}/user/login`,data);
+    return this.http.post<any>(`${this.baseUrl}/bookstore/user/login`,data);
   }
 
   userSignUpData(data:any):Observable<any>{
-    return this.http.post(`${this.baseUrl}/user/signup`,data);
+    return this.http.post<any>(`${this.baseUrl}/bookstore/user/signup`,data);
   }
 }

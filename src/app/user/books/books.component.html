@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="text-center mt-3">
+        <p class="h1" [style]="'color:#ff4081'">Welcome To Shiksha Online Bookstore!!</p>
+    </div>
+    <div class="d-flex flex-row flex-wrap justify-content-center mt-4">
+        <p-card *ngFor="let book of books" [style]="{width: '255px', height:'420px'}"
+            styleClass="shadow-6 border rounded" routerLink="/user/bookdetails/{{book.id}}" class="mx-3 mb-4">
+            <ng-template pTemplate="header">
+                <div class="text-center py-3">
+                    <img [src]="book.imageUrl"  [alt]="book.bookName" [style]="{width:'225px', height:'260px'}">
+                </div>
+            </ng-template>
+            <div class="bookName">
+                <p class="h6">{{book.bookName}}</p>
+            </div>
+
+            <p class="text-secondary">by {{book.author}}</p>
+            <div class="d-flex justify-content-between">
+                <p [style.color]="book.status=='Available'?'#ff4081':'blue'" class="h6">{{book.status}}</p>
+                <p [style]="'color:#29a329'" class="h6">{{book.price | currency:"INR":"symbol"}}</p>
+            </div>
+        </p-card>
+    </div>
+</div>

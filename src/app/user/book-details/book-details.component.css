@@ -1,0 +1,9 @@
+p{
+    font-style: italic;
+  }
+
+  :host ::ng-deep .p-button.p-button-warning:enabled:focus {
+    outline:none;
+    outline-offset: 0;
+    box-shadow: none;
+}

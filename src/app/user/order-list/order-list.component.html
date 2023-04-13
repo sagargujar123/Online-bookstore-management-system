@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row mt-3 pb-3">
+        <p-table [value]="orderList" dataKey="orderId">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    Your All Order Status
+                </div>
+                <div class="text-right text-primary">
+                    Total Orders: {{totalOrders}}
+                </div>
+            </ng-template>
+
+            <!-- show order list -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>OrderId</th>
+                    <th>Order Date</th>
+                    <th>Total Amount</th>
+                    <th>Payment Status</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-orderList>
+                <tr>
+                    <td class="fw-bold text-primary cursor-pointer" [pRowToggler]="orderList">{{orderList.orderId}}</td>
+                    <td>{{orderList.orderDate}}</td>
+                    <td>{{orderList.totalCost | currency:'INR'}}</td>
+                    <td><span class="fw-semibold"
+                            [style.color]="orderList.paymentStatus=='Successful'?'#00b300':'red'">{{orderList.paymentStatus}}</span>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <!--show order item list -->
+            <ng-template pTemplate="rowexpansion" let-orderList>
+                <tr>
+                    <td colspan="5">
+                        <div class="p-4">
+                            <p-table [value]="orderList.orderItemList"
+                                styleClass="p-datatable-gridlines border border-secondary">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Book Name</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total Cost</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-order>
+                                    <tr>
+                                        <td style="width: 350px;">{{ order.bookName }}</td>
+                                        <td><img [src]="order.imageUrl" [alt]="order.bookName" width="50px"></td>
+                                        <td>{{ order.price | currency: 'INR' }}</td>
+                                        <td>{{ order.quantity }}</td>
+                                        <td class="fw-semibold">{{ order.price * order.quantity | currency:'INR' }}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+

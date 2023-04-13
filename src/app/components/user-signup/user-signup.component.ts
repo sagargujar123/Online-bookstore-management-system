@@ -14,7 +14,8 @@ export class UserSignupComponent implements OnInit {
   confhide = true;
   signupForm!: FormGroup;
 
-  constructor(private formbuilder: FormBuilder,
+  constructor(
+    private formbuilder: FormBuilder,
     private loginService: LoginServiceService,
     private router: Router,
     private messageService: MessageService) { }
@@ -47,10 +48,12 @@ export class UserSignupComponent implements OnInit {
     }
 
     this.loginService.userSignUpData(data).subscribe((response) => {
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
       console.log(response);
-      this.signupForm.reset();
-      this.router.navigate(['/login']);
+      if (response.statusCode === 200) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+        this.signupForm.reset();
+        this.router.navigate(['login']);
+      }
     });
   }
 }

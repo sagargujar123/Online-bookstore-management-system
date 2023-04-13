@@ -1,0 +1,80 @@
+<p-toast [breakpoints]="{'576px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<div class="container pt-2">
+    <div class="d-flex justify-content-between align-items-center mt-2">
+        <div>
+            <h3 class="mb-0" [ngStyle]="{color:'var(--green-600)'}">User List
+                <p-badge [value]="totalOrders" size="large" severity="warning"></p-badge>
+            </h3>
+        </div>
+        <div>
+            <button pButton pRipple label="Book List" class="p-button-warning p-button-raised"
+                (click)="goToBookList()"></button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <p-table [value]="users" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '40rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>UserId</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td routerLink="/admin/orderlist/{{user.id}}" class="fw-bold text-primary cursor-pointer">
+                        {{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.contactNumber}}</td>
+                    <td>{{user.role}}</td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                            (click)="showUpdateForm(user.id)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                            (click)="deleteUser(user.id)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+
+<!-- update user role -->
+<p-dialog header="Update Role" [(visible)]="visible" [style]="{width: '35vw'}" [breakpoints]="{ '960px': '75vw' }">
+    <form [formGroup]="updateUserRole" #form1="ngForm" (ngSubmit)="updateRole()">
+
+        <!-- user name -->
+        <div class="mb-3">
+            <label for="username" class="block text-900 font-medium mb-2">User Name</label>
+            <input id="username" type="text" pInputText formControlName="name" class="w-full" readonly>
+        </div>
+
+        <!-- email -->
+        <div class="mb-3">
+            <label for="email" class="block text-900 font-medium mb-2">Email</label>
+            <input id="email" type="text" pInputText formControlName="email" class="w-full" readonly>
+        </div>
+
+        <!-- contact no -->
+        <div class="mb-3">
+            <label for="contact" class="block text-900 font-medium mb-2">Contact Number</label>
+            <input id="contact" type="number" pInputText formControlName="contactNumber" class="w-full" readonly>
+        </div>
+
+        <!-- user role -->
+        <div class="mb-3">
+            <label for="role" class="block text-900 font-medium mb-2">User Role</label>
+            <input id="role" type="text" placeholder="Enter role (admin/user)" pInputText formControlName="role"
+                class="w-full">
+        </div>
+
+        <!-- Update button -->
+        <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil"
+            class="p-button-success p-button-raised w-full mt-3"></button>
+    </form>
+</p-dialog>

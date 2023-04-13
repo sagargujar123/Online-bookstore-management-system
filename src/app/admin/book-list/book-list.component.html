@@ -1,0 +1,174 @@
+<p-toast [breakpoints]="{'576px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<div class="text-center">
+    <p-progressSpinner *ngIf="loading" styleClass="w-5rem h-5rem" strokeWidth="5" animationDuration=".8s"></p-progressSpinner>
+</div>
+<div class="container py-2">
+    <div class="d-flex justify-content-between align-items-center text-center mt-2">
+        <div>
+            <h3 class="mb-0" [ngStyle]="{color:'var(--green-600)'}">Books List
+                <p-badge [value]="totalOrders" size="large" severity="warning"></p-badge>
+            </h3>
+        </div>
+        <div>
+            <button pButton pRipple label="User List" class="p-button-warning p-button-raised mt-1 mr-2"
+                (click)="goToUserList()"></button>
+            <button pButton pRipple label="Add book" class="p-button-success p-button-raised mt-1"
+                (click)="addNewBook()"></button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <p-table [value]="books">
+            <ng-template pTemplate="header" class="border">
+                <tr>
+                    <th>BookId</th>
+                    <th>BookName</th>
+                    <th>Image</th>
+                    <th>BookDetails</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Available<br>Quantity</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-books>
+                <tr>
+                    <td class="text-primary fw-bold">{{books.id}}</td>
+                    <td>{{books.bookName}}</td>
+
+
+                    <td><img [src]="books.imageUrl" alt="" width="45px"></td>
+                    <td>{{books.bookDetail}}</td>
+                    <td>{{books.author}}</td>
+                    <td>{{books.price | currency:'INR'}}</td>
+                    <td [style.color]="books.availableQuantity==0?'red':'green'">{{books.availableQuantity}}</td>
+                    <td class="h6" [style.color]="books.status=='Available'?'green':'red'">{{books.status}}</td>
+                    <td style="width:120px;">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                            (click)="getBookToUpdate(books.id)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                            (click)="deleteBook(books.id)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<!-- add new book -->
+<p-dialog header="Add New Book" [(visible)]="visible" [style]="{width: '35vw'}" [breakpoints]="{ '960px': '75vw' }">
+    <form [formGroup]="addBookForm" #form1="ngForm" (ngSubmit)="addBookToBookList()">
+
+        <!-- bookName -->
+        <div class="mb-3">
+            <label for="bookName" class="block text-900 font-medium mb-2">Book Name</label>
+            <input id="bookName" type="text" placeholder="Enter bookname" pInputText formControlName="bookName"
+                class="w-full">
+        </div>
+        <!-- bookImage -->
+        <div class="mb-3">
+            <label for="bookImage" class="block text-900 font-medium mb-2">Book Image</label>
+            <input id="bookImage" type="text" placeholder="Enter imageUrl" pInputText formControlName="imageUrl"
+                class="w-full">
+        </div>
+        <!-- bookDetail -->
+        <div class="mb-3">
+            <label for="bookDetail" class="block text-900 font-medium mb-2">Book Information</label>
+            <input id="bookDetail" type="text" pInputText placeholder="Enter bookDetail" formControlName="bookDetail"
+                class="w-full">
+        </div>
+        <!-- author -->
+        <div class="mb-3">
+            <label for="author" class="block text-900 font-medium mb-2">Book Author</label>
+            <input id="author" type="text" pInputText placeholder="Enter author" formControlName="author"
+                class="w-full">
+        </div>
+        <!--price-->
+        <div class="mb-3">
+            <label for="price" class="block text-900 font-medium mb-2">Book Price</label>
+            <input id="price" type="text" pInputText placeholder="Enter price" formControlName="price" class="w-full"
+                maxlength="20">
+        </div>
+        <!-- availableQuantity -->
+        <div class="mb-3">
+            <label for="availableQty" class="block text-900 font-medium mb-2">Available Quantity</label>
+            <input id="availableQty" type="text" pInputText placeholder="Enter available Quantity"
+                formControlName="availableQuantity" class="w-full">
+        </div>
+        <!-- status -->
+        <div class="mb-3">
+            <label for="status" class="block text-900 font-medium mb-2">Available Status</label>
+            <input id="status" type="text" pInputText placeholder="Enter status (availble/not available)"
+                formControlName="status" class="w-full">
+        </div>
+        <!-- Add book button -->
+        <button type="submit" pButton pRipple label="Add" icon="pi pi-plus"
+            class="p-button-success p-button-raised w-full mt-3"></button>
+    </form>
+</p-dialog>
+
+
+<!-- update book -->
+<p-dialog header="Update Book" [(visible)]="isVisible" [style]="{width: '35vw'}" [breakpoints]="{ '960px': '75vw' }">
+    <form [formGroup]="updateBookForm" #form1="ngForm" (ngSubmit)="updateBook()">
+
+        <!-- bookId -->
+        <div class="mb-3">
+            <label for="bookId" class="block text-900 font-medium mb-2">Book Id</label>
+            <input id="id" type="text" pInputText formControlName="id" class="w-full">
+        </div>
+
+        <!-- bookName -->
+        <div class="mb-3">
+            <label for="bookName" class="block text-900 font-medium mb-2">Book Name</label>
+            <input id="bookName" type="text" pInputText formControlName="bookName"
+                class="w-full">
+        </div>
+
+        <!-- bookImage -->
+        <div class="mb-3">
+            <label for="bookImage" class="block text-900 font-medium mb-2">Book Image</label>
+            <input id="bookImage" type="text" pInputText formControlName="imageUrl"
+                class="w-full">
+        </div>
+
+        <!-- bookDetail -->
+        <div class="mb-3">
+            <label for="bookDetail" class="block text-900 font-medium mb-2">Book Information</label>
+            <input id="bookDetail" type="text" pInputText formControlName="bookDetail"
+                class="w-full">
+        </div>
+
+        <!-- author -->
+        <div class="mb-3">
+            <label for="author" class="block text-900 font-medium mb-2">Book Author</label>
+            <input id="author" type="text" pInputText formControlName="author"
+                class="w-full">
+        </div>
+
+        <!--price-->
+        <div class="mb-3">
+            <label for="price" class="block text-900 font-medium mb-2">Book Price</label>
+            <input id="price" type="text" pInputText formControlName="price" class="w-full"
+                maxlength="20">
+        </div>
+
+        <!-- availableQuantity -->
+        <div class="mb-3">
+            <label for="availableQty" class="block text-900 font-medium mb-2">Available Quantity</label>
+            <input id="availableQty" type="text" pInputText 
+                formControlName="availableQuantity" class="w-full">
+        </div>
+
+        <!-- status -->
+        <div class="mb-3">
+            <label for="status" class="block text-900 font-medium mb-2">Available Status</label>
+            <input id="status" type="text" pInputText 
+                formControlName="status" class="w-full">
+        </div>
+
+        <!-- Update book button -->
+        <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil"
+            class="p-button-success p-button-raised w-full mt-3"></button>
+    </form>
+</p-dialog>

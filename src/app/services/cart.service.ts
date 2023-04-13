@@ -6,18 +6,22 @@ import { Books } from '../shared/models/books';
   providedIn: 'root'
 })
 export class CartService {
-  private baseUrl="http://localhost:3000";
+  private baseUrl="https://bookstore-mnmt-system.osc-fr1.scalingo.io";
   constructor(private http:HttpClient) { }
 
   addBookToCart(book:any){
-    return this.http.post(`${this.baseUrl}/cart`,book);
+    return this.http.post(`${this.baseUrl}/cart/add`,book);
   }
 
-  getAllBooksFromCart(){
-    return this.http.get(`${this.baseUrl}/cart`);
+  getAllBooksFromCart(userId:any){
+    return this.http.get(`${this.baseUrl}/cart/${userId}`);
   }
 
   deleteBookById(id:any){
-    return this.http.delete(`${this.baseUrl}/cart/${id}`);
+    return this.http.delete(`${this.baseUrl}/cart/delete/${id}`);
+  }
+
+  updateCart(data:any){
+    return this.http.put(`${this.baseUrl}/cart/update`,data);
   }
 }

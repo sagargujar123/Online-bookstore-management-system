@@ -4,49 +4,60 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpResponse
 } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import {MessageService} from 'primeng/api';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class TokenInterceptorInterceptor implements HttpInterceptor {
 
-  constructor(private messageService:MessageService) {}
+  constructor(private messageService: MessageService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token=localStorage.getItem('token');
-    const tokenReq=request.clone({
-      setHeaders:{
-       Authorization:`Bearer ${token}`
-      }
-    })
-    return next.handle(tokenReq).pipe(
-      catchError((error:HttpErrorResponse)=>{
-        let errorMsg='';
-        if(error.error instanceof ErrorEvent){
-          errorMsg=error.error.message;
-          this.messageService.add({severity:'warn', summary: 'warn', detail: error.error.message});
+    const sessionToken = localStorage.getItem('token');
+    if (sessionToken) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${sessionToken}`
         }
-        else{
-          // if(error.status===200){
-          //   this.messageService.add({severity:'success', summary: 'Success', detail: error.error.message});
-          //   // errorMsg=error.error.message;
-          // }
-          // else 
-          if(error.status===400){
-            this.messageService.add({severity:'error', summary: 'error', detail: error.error.message});
-          }
-          else if(error.status===401){
-            this.messageService.add({severity:'error', summary: 'error', detail: error.error.message});
-          }
-          else {
-            console.log("an error occured");
+      });
+    } else {
+      request = request.clone();
+    }
+
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMsg = '';
+        if (error.error instanceof ErrorEvent) {
+          errorMsg = error.message;
+        }
+        else {
+          switch (error.status) {
+            case 400:
+              this.messageService.add({ severity: 'error', summary: 'error', detail: error.error.errorMessage });
+              break;
+
+            case 401:
+              this.messageService.add({ severity: 'error', summary: 'error', detail: error.error.errorMessage });
+              break;
+
+            case 403:
+              this.messageService.add({ severity: 'error', summary: 'error', detail: error.error.errorMessage });
+              break;
+
+            case 404:
+              this.messageService.add({ severity: 'error', summary: 'error', detail:'Page '+ error.error.error });
+              break;
+
+            case 500:
+              this.messageService.add({ severity: 'error', summary: 'error', detail: error.error.errorMessage });
+              break;
           }
         }
-        console.log(errorMsg);
-        return throwError(()=>errorMsg);
+        return throwError(() => errorMsg);
       })
-    )
+    );
   }
 }

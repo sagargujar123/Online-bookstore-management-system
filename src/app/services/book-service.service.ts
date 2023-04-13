@@ -7,15 +7,16 @@ import { Books } from '../shared/models/books';
   providedIn: 'root'
 })
 export class BookServiceService {
-private baseUrl='http://localhost:3000/books';
+private baseUrl='https://bookstore-mnmt-system.osc-fr1.scalingo.io';
 
   constructor(private http:HttpClient) { }
   
   getAllBooks():Observable<Books[]>{
-    return this.http.get<Books[]>(`${this.baseUrl}`);
+    return this.http.get<Books[]>(`${this.baseUrl}/book/all`);
   }
 
+
   getBookById(id:any):Observable<any>{
-    return this.http.get<Books>(`${this.baseUrl}/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/book/${id}`);
   }
 }

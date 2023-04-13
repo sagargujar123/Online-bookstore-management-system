@@ -5,15 +5,19 @@ import {HttpClient} from '@angular/common/http'
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl="http://localhost:3000";
+  private baseUrl="https://bookstore-mnmt-system.osc-fr1.scalingo.io";
 
   constructor(private http:HttpClient) { }
 
-  addBooksToOrder(books:any){
-    return this.http.post(`${this.baseUrl}/order`,books)
+  getOrderdBooks(userId:any){
+    return this.http.get(`${this.baseUrl}/cart/${userId}`);
   }
 
-  getOrderdBooks(){
-    return this.http.get(`${this.baseUrl}/order`);
+  getOrderByUserId(userId:any){
+    return this.http.get(`${this.baseUrl}/order/add/${userId}`);
+  }
+
+  getOrderList(userId:any){
+    return this.http.get(`${this.baseUrl}/order/user_order/${userId}`);
   }
 }

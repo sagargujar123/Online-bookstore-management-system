@@ -1,0 +1,13 @@
+:host ::ng-deep .p-datatable .p-datatable-thead > tr >th {
+    background-color: rgb(240, 238, 233);
+    text-align: center;
+    font-weight: 600;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-width: none;
+    padding: 4px;
+}
+
