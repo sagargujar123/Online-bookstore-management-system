@@ -1,0 +1,31 @@
+<p-toast [breakpoints]="{'576px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top shadow-sm py-0">
+  <div class="container-fluid">
+    <div class="navbar-brand d-flex align-items-center">
+      <img src="../../assets/images/books.jpg" class="mx-0 py-0 rounded-circle" alt="" width="80px" height="70px">
+      <h4 class="px-0 fs-1 text-success"><i>Shiksha</i></h4>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class=""><i class="pi pi-bars"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="books">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="orderlist">Your Orders</a>
+        </li>
+      </ul>
+
+      <div>
+        <a class="logoutBtn" (click)="logout()">Logout</a>
+        <button routerLink="cart" class="btn btn-success py-2 mb-1">
+          <i style="font-size: 20px;" class="pi pi-cart-plus"></i>
+          <div style="font-size: 9px;" class="badge bg-danger">2</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

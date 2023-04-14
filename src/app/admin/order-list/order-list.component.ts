@@ -39,12 +39,4 @@ export class OrderListComponent implements OnInit {
       }
     });
   }
-
-  goToBookList() {
-    this.router.navigate(['admin/booklist']);
-  }
-
-  goToUserList() {
-    this.router.navigate(['admin/userlist']);
-  }
 }

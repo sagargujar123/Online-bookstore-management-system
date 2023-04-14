@@ -10,8 +10,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { MaterialModule } from '../material/material/material.module';
 import { UserComponent } from './user/user.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-
-
+import { HeaderComponent } from './header/header.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +20,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     OrderListComponent,
     OrdersComponent,
     UserComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

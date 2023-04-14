@@ -15,10 +15,10 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void { }
 
-  logout() {
-    if (localStorage.length !== 0) {
-      this.messageService.add({ severity: 'success', summary: 'success', detail: 'User Logout Successfully' });
-    }
-    this.authService.isLogout();
-  }
+  // logout() {
+  //   if (localStorage.length !== 0) {
+  //     this.messageService.add({ severity: 'success', summary: 'success', detail: 'User Logout Successfully' });
+  //   }
+  //   this.authService.isLogout();
+  // }
 }

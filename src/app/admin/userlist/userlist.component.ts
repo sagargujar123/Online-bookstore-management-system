@@ -83,8 +83,4 @@ export class UserlistComponent implements OnInit {
       }
     });
   }
-
-  goToBookList() {
-    this.router.navigate(['admin/booklist']);
-  }
 }

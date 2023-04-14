@@ -8,7 +8,8 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HeaderComponent } from './header/header.component';
+import { UpdateBookComponent } from './update-book/update-book.component'
 
 @NgModule({
   declarations: [
@@ -16,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserlistComponent,
     OrderListComponent,
     BookListComponent,
+    HeaderComponent,
+    UpdateBookComponent
   ],
   imports: [
     CommonModule,

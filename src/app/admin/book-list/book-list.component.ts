@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookListService } from 'src/app/services/book-list.service';
 import { MessageService } from 'primeng/api';
+// import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+// import { UpdateBookComponent } from '../update-book/update-book.component';
 
 @Component({
   selector: 'app-book-list',
@@ -20,11 +22,15 @@ export class BookListComponent implements OnInit {
   loading!: boolean;
   totalOrders: any;
 
+  // ref!:DynamicDialogRef;
+
+
   constructor(
     private router: Router,
     private formbuilder: FormBuilder,
     private bookListService: BookListService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    // public dialogService:DialogService
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +73,26 @@ export class BookListComponent implements OnInit {
   //add book button
   addNewBook() {
     this.visible = true;
+    // this.ref=this.dialogService.open(UpdateBookComponent,{
+    //   header:'Update Book',
+    //   width:'70%',
+    //   contentStyle:{ overflow: 'auto'},
+    //   baseZIndex:10000,
+    //   maximizable:true
+    // });
+  }
+
+  //change available status
+  addStatus(value: any) {
+    if (value <= 0) {
+      this.addBookForm.patchValue({
+        status: 'Not Available'
+      });
+    } else {
+      this.addBookForm.patchValue({
+        status: 'Available'
+      });
+    }
   }
 
   addBookToBookList() {
@@ -83,6 +109,7 @@ export class BookListComponent implements OnInit {
     });
   }
 
+  // Update book code
   // Update book button
   getBookToUpdate(bookId: any) {
     this.isVisible = true;
@@ -105,6 +132,19 @@ export class BookListComponent implements OnInit {
       availableQuantity: this.responseItem.availableQuantity,
       status: this.responseItem.status
     });
+  }
+
+  //change available status
+  changeStatus(value: any) {
+    if (value <= 0) {
+      this.updateBookForm.patchValue({
+        status: 'Not Available'
+      });
+    } else {
+      this.updateBookForm.patchValue({
+        status: 'Available'
+      });
+    }
   }
 
   updateBook() {
@@ -131,9 +171,5 @@ export class BookListComponent implements OnInit {
       }
       this.showBookList();
     });
-  }
-
-  goToUserList() {
-    this.router.navigate(['admin/userlist']);
   }
 }
