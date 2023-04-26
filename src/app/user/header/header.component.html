@@ -23,7 +23,7 @@
         <a class="logoutBtn" (click)="logout()">Logout</a>
         <button routerLink="cart" class="btn btn-success py-2 mb-1">
           <i style="font-size: 20px;" class="pi pi-cart-plus"></i>
-          <div style="font-size: 9px;" class="badge bg-danger">2</div>
+          <div style="font-size: 9px;" class="badge bg-danger">{{totalItemsInCart}}</div>
         </button>
       </div>
     </div>

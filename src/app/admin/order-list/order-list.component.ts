@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { OrderListService } from 'src/app/services/order-list.service';
 
@@ -13,7 +13,6 @@ export class OrderListComponent implements OnInit {
   totalOrders: any;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private orderListService: OrderListService,
     private messageService: MessageService) { }

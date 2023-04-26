@@ -10,7 +10,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { MaterialModule } from '../material/material/material.module';
 import { UserComponent } from './user/user.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { HeaderComponent } from './header/header.component'
+import { HeaderComponent } from './header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HeaderComponent } from './header/header.component'
   imports: [
     CommonModule,
     UserRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }

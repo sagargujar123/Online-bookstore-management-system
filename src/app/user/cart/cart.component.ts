@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
   cartId: any;
   bookId: any;
   bookQuantity!: number;
+  totalItemsInCart: any;
 
   constructor(
     private cartService: CartService,
@@ -33,6 +34,9 @@ export class CartComponent implements OnInit {
       this.booksInCart = response.cartItems;
       this.totalPrice = response.totalCost;
       this.totalBooks = response.totalBooks;
+      this.totalItemsInCart = this.booksInCart.length;
+      console.log("len: ",this.totalItemsInCart)
+
       console.log(response);
     });
   }
@@ -41,10 +45,17 @@ export class CartComponent implements OnInit {
     this.cartService.deleteBookById(bookId).subscribe((response: any) => {
       console.log(response);
       if (response.statusCode == 200) {
+        this.totalItemsInCart--;
+        this.updateData();
+
         this.messageService.add({ severity: 'success', summary: 'success', detail: response.message, life: 3000 });
         this.showBooksInCart();
       }
     });
+  }
+
+  updateData() {
+    this.cartService.updateData(this.totalItemsInCart);
   }
 
   decreaseQty(book: any) {

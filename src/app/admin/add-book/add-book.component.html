@@ -1,0 +1,47 @@
+<form [formGroup]="addBookForm" #form1="ngForm" (ngSubmit)="addBookToBookList()">
+
+    <!-- bookName -->
+    <div class="mb-3">
+        <label for="bookName" class="block text-900 font-medium mb-2">Book Name</label>
+        <input id="bookName" type="text" placeholder="Enter bookname" pInputText formControlName="bookName"
+            class="w-full">
+    </div>
+    <!-- bookImage -->
+    <div class="mb-3">
+        <label for="bookImage" class="block text-900 font-medium mb-2">Book Image</label>
+        <input id="bookImage" type="text" placeholder="Enter imageUrl" pInputText formControlName="imageUrl"
+            class="w-full">
+    </div>
+    <!-- bookDetail -->
+    <div class="mb-3">
+        <label for="bookDetail" class="block text-900 font-medium mb-2">Book Information</label>
+        <input id="bookDetail" type="text" pInputText placeholder="Enter bookDetail" formControlName="bookDetail"
+            class="w-full">
+    </div>
+    <!-- author -->
+    <div class="mb-3">
+        <label for="author" class="block text-900 font-medium mb-2">Book Author</label>
+        <input id="author" type="text" pInputText placeholder="Enter author" formControlName="author" class="w-full">
+    </div>
+    <!--price-->
+    <div class="mb-3">
+        <label for="price" class="block text-900 font-medium mb-2">Book Price</label>
+        <input id="price" type="text" pInputText placeholder="Enter price" formControlName="price" class="w-full"
+            maxlength="20">
+    </div>
+    <!-- availableQuantity -->
+    <div class="mb-3">
+        <label for="availableQty" class="block text-900 font-medium mb-2">Available Quantity</label>
+        <input type="text" pInputText placeholder="Enter available Quantity" formControlName="availableQuantity"
+            #availableQnty (change)="addStatus(availableQnty.value)" class="w-full">
+    </div>
+    <!-- status -->
+    <div class="mb-3">
+        <label for="status" class="block text-900 font-medium mb-2">Available Status</label>
+        <input id="status" type="text" pInputText placeholder="Enter status (availble/not available)"
+            formControlName="status" class="w-full" readonly>
+    </div>
+    <!-- Add book button -->
+    <button type="submit" pButton pRipple label="Add" icon="pi pi-plus"
+        class="p-button-success p-button-raised w-full mt-3"></button>
+</form>

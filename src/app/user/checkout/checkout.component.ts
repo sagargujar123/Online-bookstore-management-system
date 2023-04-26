@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  payAmount() {
-    this.router.navigate([`user/orders`]);
+  addAvailableOffers() {
+    this.router.navigate(['user/orders']);
   }
 }

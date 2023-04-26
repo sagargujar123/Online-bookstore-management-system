@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -21,4 +20,17 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['login']);
     return false;
   }
+
+  // canActivate(): Observable<boolean> {
+  //   return this.auth.currentUser$.pipe(
+  //     filter((currentUser) => currentUser !== undefined),
+  //     map((currentUser) => {
+  //       if (!currentUser) {
+  //         this.router.navigate(['login']);
+  //         return false;
+  //       }
+  //       return true;
+  //     })
+  //   );
+  // }
 }

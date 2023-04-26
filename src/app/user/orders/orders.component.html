@@ -1,6 +1,34 @@
 <div class="container">
+    <!-- offers view -->
     <div class="row mt-3">
-        <p-table [value]="orderItem" styleClass="border-1">
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            <p-card *ngFor="let offer of offers" class="p-2"
+                [style]="{width: '260px',
+                        color:'white',
+                        backgroundImage:'linear-gradient(to right,#00b300, #70db70)',
+                        cursor:'pointer'}" 
+                        (click)="addPromoCode(offer.promoCode)"
+                        >
+                <ng-template pTemplate="body">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <p>promo code</p>
+                            <h5 class="border border-light rounded mt-2">{{offer.promoCode}}</h5>
+                        </div>
+                        <div class="col-8">
+                            <div class="h6">Save up to Rs {{offer.discountAmount}} On minimum order of Rs
+                                {{offer.applicableAmount}}</div>
+                            <div class="p">valid from: {{offer.startDate | date}} To {{offer.endDate | date}}</div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+
+    <!-- order view -->
+    <div class="row py-3">
+        <p-table [value]="orderItems" styleClass="border-1">
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between pb-2">
                     Your Order Status
@@ -12,7 +40,36 @@
                     </div>
                     <div class="orderInfo">
                         <h6>Total Amount : <span>{{totalCost | currency:'INR'}}</span></h6>
-                        <h6>Payment Status : <span [style]="'color:#00b300'">{{paymentStatus}}</span></h6>
+
+                        <div *ngIf="showInputBox else showDiscountLbl">
+                            <p class="fw-semibold fst-italic mb-2" [style]="'color:#00b300'">Apply Proper Offer</p>
+                            
+                            <form [formGroup]="promoCodeForm" #form1="ngForm" (ngSubmit)="applyOffer(code.value)">
+                                <input type="text" placeholder="Enter promo code" formControlName="offerCode" #code>
+                                    <span><button type="submit" pButton
+                                    label="Apply" class="p-button-warning p-button-raised" style="height:30px"></button></span>
+                            </form>
+                        </div>
+                        <ng-template #showDiscountLbl>
+                            <div *ngIf="discount!=null">
+                                <p class="fw-semibold text-danger mb-0">{{discount | currency:'INR'}} <i>discount</i>
+                                </p>
+                                <p class="fw-semibold mb-0">Actual Amount: <span
+                                        class="fw-bold text-success">{{actualAmount |
+                                        currency:'INR'}}</span></p>
+                            </div>
+                            <div *ngIf="discount==null">
+                                <p class="fw-semibold fst-italic mb-2" [style]="'color:#00b300'">Apply Proper Offer</p>
+                                
+                                <form [formGroup]="promoCodeForm" #form1="ngForm" (ngSubmit)="applyOffer(code.value)">
+                                    <input type="text" placeholder="Enter promo code" formControlName="offerCode" #code>
+                                        <span><button type="submit" pButton
+                                        label="Apply" class="p-button-warning p-button-raised" style="height:30px"></button></span>
+                                </form>
+                                <!-- <p class="fw-semibold fst-italic mb-0" [style]="'color:#ff3300'">Offer not applicable
+                                </p> -->
+                            </div>
+                        </ng-template>
                     </div>
                 </div>
             </ng-template>
@@ -30,6 +87,14 @@
                     <td><img [src]="orderItem.imageUrl" [alt]="orderItem.bookName" width="50px"></td>
                     <td>{{orderItem.quantity}}</td>
                     <td class="fw-bold">{{orderItem.price | currency:'INR'}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <tr>
+                    <td colspan="4" class="text-right">
+                        <button pButton label="Pay Amount" icon="pi pi-check" iconPos="right"
+                            class="p-button-warning p-button-raised" (click)="payAmount()"></button>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>

@@ -17,6 +17,8 @@ export class BookDetailsComponent implements OnInit {
   userId: any;
   quantity: any;
 
+  totalItemsInCart: any;
+
   ngOnInit(): void {
     this.getBook();
   }
@@ -47,9 +49,25 @@ export class BookDetailsComponent implements OnInit {
       this.cartService.addBookToCart(payload).subscribe((response: any) => {
         console.log(response);
         if (response.statusCode === 201) {
+
+          this.getTotalItemsFromCart();
           this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message, life: 3000 });
         }
       });
     }
+  }
+
+  getTotalItemsFromCart() {
+    this.userId = localStorage.getItem('userId');
+    this.cartService.getAllBooksFromCart(this.userId).subscribe((response: any) => {
+      this.totalItemsInCart = response.cartItems.length;
+      console.log("cartitems: ", this.totalItemsInCart);
+
+      this.updateData()
+    });
+  }
+
+  updateData() {
+    this.cartService.updateData(this.totalItemsInCart);
   }
 }

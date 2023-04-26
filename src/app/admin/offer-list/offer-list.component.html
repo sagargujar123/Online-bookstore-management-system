@@ -1,0 +1,47 @@
+<div class="container pt-2">
+    <div class="d-flex justify-content-between align-items-center text-center mt-2">
+        <div>
+            <h3 class="mb-0" [ngStyle]="{color:'var(--green-600)'}">Offer List
+                <p-badge [value]="totalOffers" size="large" severity="warning"></p-badge>
+            </h3>
+        </div>
+        <div>
+            <button pButton pRipple label="Add Offer" class="p-button-success p-button-raised mt-1"
+                (click)="addNewOffer()"></button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <p-table [value]="offers" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '40rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>OfferId</th>
+                    <th>promoCode</th>
+                    <th>Discount Amount</th>
+                    <th>Applicable Amount</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Maximum Apply</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-offer>
+                <tr>
+                    <td>{{offer.offerId}}</td>
+                    <td class="text-danger">{{offer.promoCode}}</td>
+                    <td>{{offer.discountAmount | currency:'INR'}}</td>
+                    <td>{{offer.applicableAmount | currency:'INR'}}</td>
+                    <td>{{offer.startDate | date}}</td>
+                    <td>{{offer.endDate | date}}</td>
+                    <td>{{offer.maxApply}}</td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                            (click)="getOfferToUpdate(offer.offerId)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                            (click)="deleteOffer(offer.offerId)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+

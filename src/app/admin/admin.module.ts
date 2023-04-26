@@ -9,7 +9,12 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
-import { UpdateBookComponent } from './update-book/update-book.component'
+import { AddBookComponent } from './add-book/add-book.component';
+import { OfferListComponent } from './offer-list/offer-list.component';
+import { UpdateBookComponent } from './update-book/update-book.component';
+import { AddOfferComponent } from './add-offer/add-offer.component';
+import { UpdateOfferComponent } from './update-offer/update-offer.component';
+import { UpdateUserComponent } from './update-user/update-user.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { UpdateBookComponent } from './update-book/update-book.component'
     OrderListComponent,
     BookListComponent,
     HeaderComponent,
-    UpdateBookComponent
+    AddBookComponent,
+    OfferListComponent,
+    UpdateBookComponent,
+    AddOfferComponent,
+    UpdateOfferComponent,
+    UpdateUserComponent
   ],
   imports: [
     CommonModule,

@@ -8,17 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private messageService: MessageService) {
-
-  }
+  constructor() {}
   ngOnInit(): void { }
 
-  // logout() {
-  //   if (localStorage.length !== 0) {
-  //     this.messageService.add({ severity: 'success', summary: 'success', detail: 'User Logout Successfully' });
-  //   }
-  //   this.authService.isLogout();
-  // }
 }

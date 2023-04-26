@@ -1,70 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookListService } from 'src/app/services/book-list.service';
 import { MessageService } from 'primeng/api';
-// import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-// import { UpdateBookComponent } from '../update-book/update-book.component';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AddBookComponent } from '../add-book/add-book.component';
+import { UpdateBookComponent } from '../update-book/update-book.component'
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.css']
+  styleUrls: ['./book-list.component.css'],
+  providers: [DialogService]
 })
 export class BookListComponent implements OnInit {
   books!: any;
-  visible!: boolean;
-  isVisible!: boolean;
-  addBookForm!: FormGroup;
-  updateBookForm!: FormGroup;
-  id: any;
-  responseItem: any;
   loading!: boolean;
   totalOrders: any;
 
-  // ref!:DynamicDialogRef;
-
+  ref!: DynamicDialogRef;
 
   constructor(
-    private router: Router,
-    private formbuilder: FormBuilder,
     private bookListService: BookListService,
     private messageService: MessageService,
-    // public dialogService:DialogService
+    public dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
     this.showBookList();
-
-    //add book form
-    this.addBookForm = this.formbuilder.group({
-      bookName: [''],
-      imageUrl: [''],
-      bookDetail: [''],
-      author: [''],
-      price: [''],
-      availableQuantity: [''],
-      status: ['']
-    });
-
-    //update book form
-    this.updateBookForm = this.formbuilder.group({
-      id: [''],
-      bookName: [''],
-      imageUrl: [''],
-      bookDetail: [''],
-      author: [''],
-      price: [''],
-      availableQuantity: [''],
-      status: ['']
-    });
   }
 
   showBookList() {
     this.loading = true;
     this.bookListService.getAllBooks().subscribe((response: any) => {
       this.books = response;
-      this.totalOrders = response.length;
+      this.totalOrders = this.books.length;
       console.log(response);
       this.loading = false;
     });
@@ -72,92 +40,29 @@ export class BookListComponent implements OnInit {
 
   //add book button
   addNewBook() {
-    this.visible = true;
-    // this.ref=this.dialogService.open(UpdateBookComponent,{
-    //   header:'Update Book',
-    //   width:'70%',
-    //   contentStyle:{ overflow: 'auto'},
-    //   baseZIndex:10000,
-    //   maximizable:true
-    // });
-  }
+    this.ref = this.dialogService.open(AddBookComponent, {
+      header: 'Add New Book',
+      width: '410px',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 1000,
+    });
 
-  //change available status
-  addStatus(value: any) {
-    if (value <= 0) {
-      this.addBookForm.patchValue({
-        status: 'Not Available'
-      });
-    } else {
-      this.addBookForm.patchValue({
-        status: 'Available'
-      });
-    }
-  }
-
-  addBookToBookList() {
-    var data = this.addBookForm.value;
-    this.bookListService.addBook(data).subscribe((response: any) => {
-      console.log(response);
-
-      if (response.statusCode === 201) {
-        this.messageService.add({ severity: 'success', summary: 'success', detail: response.message })
-      }
-      this.addBookForm.reset();
-      this.visible = false;
+    this.ref.onClose.subscribe(() => {
       this.showBookList();
     });
   }
 
-  // Update book code
   // Update book button
   getBookToUpdate(bookId: any) {
-    this.isVisible = true;
-    this.id = bookId;
-    this.bookListService.getBookById(bookId).subscribe((response: any) => {
-      this.responseItem = response;
-      console.log(response);
-      this.setBookData();
+    localStorage.setItem('bookId', bookId);
+    this.ref = this.dialogService.open(UpdateBookComponent, {
+      header: 'Update Book',
+      width: '400px',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 1000,
     });
-  }
 
-  setBookData() {
-    this.updateBookForm.patchValue({
-      id: this.responseItem.id,
-      bookName: this.responseItem.bookName,
-      imageUrl: this.responseItem.imageUrl,
-      bookDetail: this.responseItem.bookDetail,
-      author: this.responseItem.author,
-      price: this.responseItem.price,
-      availableQuantity: this.responseItem.availableQuantity,
-      status: this.responseItem.status
-    });
-  }
-
-  //change available status
-  changeStatus(value: any) {
-    if (value <= 0) {
-      this.updateBookForm.patchValue({
-        status: 'Not Available'
-      });
-    } else {
-      this.updateBookForm.patchValue({
-        status: 'Available'
-      });
-    }
-  }
-
-  updateBook() {
-    const bookId = this.id;
-    const data = this.updateBookForm.value;
-
-    this.bookListService.updateBookById(bookId, data).subscribe((response: any) => {
-      console.log(response);
-      if (response.statusCode === 201) {
-        this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
-      }
-      this.updateBookForm.reset();
-      this.isVisible = false;
+    this.ref.onClose.subscribe(() => {
       this.showBookList();
     });
   }

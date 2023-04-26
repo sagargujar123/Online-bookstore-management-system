@@ -1,36 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserListService } from 'src/app/services/user-list.service';
+import { UpdateUserComponent } from '../update-user/update-user.component'
 
 @Component({
   selector: 'app-userlist',
   templateUrl: './userlist.component.html',
-  styleUrls: ['./userlist.component.css']
+  styleUrls: ['./userlist.component.css'],
+  providers: [DialogService]
 })
 export class UserlistComponent implements OnInit {
   users: any;
-  visible!: boolean;
-  updateUserRole!: FormGroup;
-  responseItem: any;
   totalOrders: any;
 
+  ref!: DynamicDialogRef;
+
   constructor(
-    private router: Router,
-    private formbuilder: FormBuilder,
     private userListService: UserListService,
+    public dialogService: DialogService,
     private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.showUserList();
-
-    this.updateUserRole = this.formbuilder.group({
-      name: [''],
-      email: [''],
-      contactNumber: [''],
-      role: ['']
-    });
   }
 
   showUserList() {
@@ -42,35 +34,17 @@ export class UserlistComponent implements OnInit {
   }
 
   showUpdateForm(userId: any) {
-    this.visible = true;
-    this.userListService.getUserByUserId(userId).subscribe((response) => {
-      this.responseItem = response;
-      console.log(response);
-      this.setData();
+    localStorage.setItem('updateUserId', userId);
+    
+    this.ref = this.dialogService.open(UpdateUserComponent, {
+      header: 'Update User Role',
+      width: '410px',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 1000,
     });
-  }
 
-  setData() {
-    this.updateUserRole.patchValue({
-      name: this.responseItem.name,
-      email: this.responseItem.email,
-      contactNumber: this.responseItem.contactNumber,
-      role: this.responseItem.role
-    });
-  }
-
-  updateRole() {
-    const id = this.responseItem.id;
-    const data = this.updateUserRole.value;
-
-    this.userListService.updateUserRole(id, data).subscribe((response: any) => {
-      console.log(response);
-      if (response.statusCode === 200) {
-        this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
-        this.updateUserRole.reset();
-        this.visible = false;
-        this.showUserList();
-      }
+    this.ref.onClose.subscribe(() => {
+      this.showUserList();
     });
   }
 

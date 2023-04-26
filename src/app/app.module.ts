@@ -34,7 +34,6 @@ import { HeaderComponent } from './components/header/header.component'
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // UserModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true }

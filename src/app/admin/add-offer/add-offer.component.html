@@ -1,0 +1,44 @@
+<form [formGroup]="addOfferForm" #form1="ngForm" (ngSubmit)="addOfferToOfferList()">
+
+    <!-- promoCode -->
+    <div class="mb-3">
+        <label for="promoCode" class="block text-900 font-medium mb-2">Promo Code</label>
+        <input id="promoCode" type="text" placeholder="Enter promo code" pInputText formControlName="promoCode"
+            class="w-full">
+    </div>
+    <!-- discountAmount -->
+    <div class="mb-3">
+        <label for="discountAmount" class="block text-900 font-medium mb-2">Discount Amount</label>
+        <input id="discountAmount" type="text" placeholder="Enter discount amount" pInputText
+            formControlName="discountAmount" class="w-full">
+    </div>
+    <!-- applicable Amount -->
+    <div class="mb-3">
+        <label for="applicableAmount" class="block text-900 font-medium mb-2">Applicable Amount</label>
+        <input id="applicableAmount" type="text" pInputText placeholder="Enter applicable amount"
+            formControlName="applicableAmount" class="w-full">
+    </div>
+    <!-- startDate -->
+    <div class="mb-3">
+        <label for="startDate" class="block text-900 font-medium mb-2">Start Date</label>
+        <input id="startDate" type="date" pInputText placeholder="Enter start date" formControlName="startDate"
+            class="w-full">
+    </div>
+
+    <!--endDate-->
+    <div class="mb-3">
+        <label for="endDate" class="block text-900 font-medium mb-2">End Date</label>
+        <input id="endDate" type="date" pInputText placeholder="Enter end date" formControlName="endDate" class="w-full"
+            maxlength="20">
+    </div>
+    <!-- maxApply -->
+    <div class="mb-3">
+        <label for="maxApply" class="block text-900 font-medium mb-2">Maximum Apply</label>
+        <input id="maxApply" type="number" pInputText placeholder="Enter maximum apply" formControlName="maxApply"
+            class="w-full">
+    </div>
+
+    <!-- Add Offer button -->
+    <button type="submit" pButton pRipple label="Add" icon="pi pi-plus"
+        class="p-button-success p-button-raised w-full mt-3"></button>
+</form>

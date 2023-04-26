@@ -15,7 +15,6 @@ private baseUrl='https://bookstore-mnmt-system.osc-fr1.scalingo.io';
     return this.http.get<Books[]>(`${this.baseUrl}/book/all`);
   }
 
-
   getBookById(id:any):Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/book/${id}`);
   }
