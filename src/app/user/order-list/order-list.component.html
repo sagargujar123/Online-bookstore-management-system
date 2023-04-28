@@ -45,6 +45,7 @@
                                 styleClass="p-datatable-gridlines border border-secondary">
                                 <ng-template pTemplate="header">
                 <tr>
+                    <th>Sr. No.</th>
                     <th>Book Name</th>
                     <th>Image</th>
                     <th>Price</th>
@@ -52,8 +53,9 @@
                     <th>Total Cost</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-order>
+            <ng-template pTemplate="body" let-rowIndex="rowIndex" let-order>
                 <tr>
+                    <td class="fw-semibold" style="width: 80px;">{{rowIndex+1}}.</td>
                     <td style="width: 350px;">{{ order.bookName }}</td>
                     <td><img [src]="order.imageUrl" [alt]="order.bookName" width="50px"></td>
                     <td>{{ order.price | currency: 'INR' }}</td>

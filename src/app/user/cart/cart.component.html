@@ -1,15 +1,13 @@
 <ng-container *ngIf="!totalBooks">
     <div class="row justify-content-center text-center">
-        <div class="col-12 md:col-8">
+            <h2 class="py-2">Your Cart is empty!</h2>
             <img src="https://qph.cf2.quoracdn.net/main-qimg-9750cbccb5c8b035a348659e6337a5a8-lq" alt="empty cart"
-                height="350px">
-            <h2>Your Cart is empty!</h2>
+                style="width: 80% !important; height:360px">
             <h3>Add item to it now</h3>
             <button pButton routerLink="/user/books" class="p-button-rounded p-button-raised p-button-warning"
                 type="button" label="Buy Now" icon="pi pi-check" iconPos="right"
                 style="width: fit-content;"></button>
         </div>
-    </div>
 </ng-container>
 
 <ng-container *ngIf="totalBooks">

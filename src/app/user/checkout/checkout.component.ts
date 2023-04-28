@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -12,10 +13,12 @@ export class CheckoutComponent implements OnInit {
   userId: any;
   totalPrice: any;
   totalBooks: any;
+  totalItemsInCart:any
 
   constructor(
     private orderService: OrderService,
-    private router: Router) { }
+    private router: Router,
+    private cartService:CartService) { }
 
   ngOnInit(): void {
     this.getOrderdBooks();
@@ -27,7 +30,13 @@ export class CheckoutComponent implements OnInit {
       this.orderedBooks = response.cartItems;
       this.totalPrice = response.totalCost;
       this.totalBooks = response.totalBooks;
+      this.totalItemsInCart=this.orderedBooks.length;
+      this.updateData();
     });
+  }
+
+  updateData() {
+    this.cartService.updateData(this.totalItemsInCart);
   }
 
   addAvailableOffers() {

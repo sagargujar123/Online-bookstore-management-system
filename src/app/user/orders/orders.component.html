@@ -2,13 +2,10 @@
     <!-- offers view -->
     <div class="row mt-3">
         <div class="d-flex flex-row flex-wrap justify-content-center">
-            <p-card *ngFor="let offer of offers" class="p-2"
-                [style]="{width: '260px',
+            <p-card *ngFor="let offer of offers" class="p-2" [style]="{width: '260px',
                         color:'white',
                         backgroundImage:'linear-gradient(to right,#00b300, #70db70)',
-                        cursor:'pointer'}" 
-                        (click)="addPromoCode(offer.promoCode)"
-                        >
+                        cursor:'pointer'}" (click)="addPromoCode(offer.promoCode)">
                 <ng-template pTemplate="body">
                     <div class="row">
                         <div class="col-4 text-center">
@@ -43,11 +40,11 @@
 
                         <div *ngIf="showInputBox else showDiscountLbl">
                             <p class="fw-semibold fst-italic mb-2" [style]="'color:#00b300'">Apply Proper Offer</p>
-                            
+
                             <form [formGroup]="promoCodeForm" #form1="ngForm" (ngSubmit)="applyOffer(code.value)">
                                 <input type="text" placeholder="Enter promo code" formControlName="offerCode" #code>
-                                    <span><button type="submit" pButton
-                                    label="Apply" class="p-button-warning p-button-raised" style="height:30px"></button></span>
+                                <span><button type="submit" pButton label="Apply"
+                                        class="p-button-warning p-button-raised" style="height:30px"></button></span>
                             </form>
                         </div>
                         <ng-template #showDiscountLbl>
@@ -60,11 +57,12 @@
                             </div>
                             <div *ngIf="discount==null">
                                 <p class="fw-semibold fst-italic mb-2" [style]="'color:#00b300'">Apply Proper Offer</p>
-                                
+
                                 <form [formGroup]="promoCodeForm" #form1="ngForm" (ngSubmit)="applyOffer(code.value)">
                                     <input type="text" placeholder="Enter promo code" formControlName="offerCode" #code>
-                                        <span><button type="submit" pButton
-                                        label="Apply" class="p-button-warning p-button-raised" style="height:30px"></button></span>
+                                    <span><button type="submit" pButton label="Apply"
+                                            class="p-button-warning p-button-raised"
+                                            style="height:30px"></button></span>
                                 </form>
                                 <!-- <p class="fw-semibold fst-italic mb-0" [style]="'color:#ff3300'">Offer not applicable
                                 </p> -->
@@ -75,14 +73,16 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
+                    <th>Sr.No.</th>
                     <th>Book Name</th>
                     <th>Image</th>
                     <th>Quantity</th>
                     <th>Price</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-orderItem>
+            <ng-template pTemplate="body" let-rowIndex="rowIndex" let-orderItem>
                 <tr>
+                    <td style="width: 80px;">{{rowIndex+1}}.</td>
                     <td>{{orderItem.bookName}}</td>
                     <td><img [src]="orderItem.imageUrl" [alt]="orderItem.bookName" width="50px"></td>
                     <td>{{orderItem.quantity}}</td>
