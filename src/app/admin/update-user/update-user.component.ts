@@ -7,8 +7,7 @@ import { UserListService } from 'src/app/services/user-list.service';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css'],
-  providers: [DynamicDialogRef]
+  styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
   userId = localStorage.getItem('updateUserId');
@@ -18,7 +17,8 @@ export class UpdateUserComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private userListService: UserListService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dialogRef: DynamicDialogRef
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +58,7 @@ export class UpdateUserComponent implements OnInit {
       if (response.statusCode === 200) {
         this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
         this.updateUserRole.reset();
+        this.dialogRef.close();
       }
     });
   }

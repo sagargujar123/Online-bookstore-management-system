@@ -15,7 +15,7 @@ export class OfferListComponent implements OnInit {
   offers: any;
   totalOffers: any;
 
-  ref!: DynamicDialogRef;
+  dialogRef!: DynamicDialogRef;
 
   constructor(
     private offerListService: OfferListService,
@@ -36,14 +36,14 @@ export class OfferListComponent implements OnInit {
 
   //Add Offer
   addNewOffer() {
-    this.ref = this.dialogService.open(AddOfferComponent, {
+    this.dialogRef = this.dialogService.open(AddOfferComponent, {
       header: 'Add New Offer',
       width: '410px',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 1000,
     });
 
-    this.ref.onClose.subscribe(() => {
+    this.dialogRef.onClose.subscribe(() => {
       this.offerList();
     });
   }
@@ -51,14 +51,14 @@ export class OfferListComponent implements OnInit {
   //Update Offer
   getOfferToUpdate(offerId: any) {
     localStorage.setItem('offerId', offerId);
-    this.ref = this.dialogService.open(UpdateOfferComponent, {
+    const dialogRef = this.dialogService.open(UpdateOfferComponent, {
       header: 'Update Offer',
       width: '410px',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 1000,
     });
 
-    this.ref.onClose.subscribe(() => {
+    dialogRef.onClose.subscribe(() => {
       this.offerList();
     });
   }

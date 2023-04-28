@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { OfferListService } from 'src/app/services/offer-list.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class AddOfferComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private offerListService: OfferListService,
-    private messageService:MessageService
+    private messageService: MessageService,
+    private dialogRef: DynamicDialogRef
   ) { }
 
   ngOnInit(): void {
@@ -32,9 +34,10 @@ export class AddOfferComponent implements OnInit {
     const data = this.addOfferForm.value;
     this.offerListService.addOffer(data).subscribe((response: any) => {
       console.log(response);
-      if(response.statusCode===201){
-        this.messageService.add({severity:'success', summary:'success', detail:response.message});
+      if (response.statusCode === 201) {
+        this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
         this.addOfferForm.reset();
+        this.dialogRef.close();
       }
     });
   }

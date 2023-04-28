@@ -7,8 +7,7 @@ import { OfferListService } from 'src/app/services/offer-list.service';
 @Component({
   selector: 'app-update-offer',
   templateUrl: './update-offer.component.html',
-  styleUrls: ['./update-offer.component.css'],
-  providers: [DynamicDialogRef]
+  styleUrls: ['./update-offer.component.css']
 })
 export class UpdateOfferComponent implements OnInit {
   offerId = localStorage.getItem('offerId');
@@ -18,8 +17,8 @@ export class UpdateOfferComponent implements OnInit {
   constructor(
     private offerListService: OfferListService,
     private formbuilder: FormBuilder,
-    public ref: DynamicDialogRef,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dialogRef: DynamicDialogRef
   ) { }
 
   ngOnInit(): void {
@@ -56,7 +55,7 @@ export class UpdateOfferComponent implements OnInit {
     });
   }
 
-  updateOffer() {
+  updateOffer(): void {
     const offerId = this.offerId;
     const data = this.updateOfferForm.value;
     this.offerListService.updateOfferByOfferId(offerId, data).subscribe((response: any) => {
@@ -64,6 +63,7 @@ export class UpdateOfferComponent implements OnInit {
       if (response.statusCode === 200) {
         this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
         this.updateOfferForm.reset();
+        this.dialogRef.close();
       }
     });
   }

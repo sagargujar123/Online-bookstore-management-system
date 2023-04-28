@@ -13,7 +13,6 @@ import { UpdateBookComponent } from '../update-book/update-book.component'
 })
 export class BookListComponent implements OnInit {
   books!: any;
-  loading!: boolean;
   totalOrders: any;
 
   ref!: DynamicDialogRef;
@@ -29,12 +28,10 @@ export class BookListComponent implements OnInit {
   }
 
   showBookList() {
-    this.loading = true;
     this.bookListService.getAllBooks().subscribe((response: any) => {
       this.books = response;
       this.totalOrders = this.books.length;
       console.log(response);
-      this.loading = false;
     });
   }
 
@@ -46,7 +43,7 @@ export class BookListComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 1000,
     });
-
+    
     this.ref.onClose.subscribe(() => {
       this.showBookList();
     });
