@@ -38,6 +38,7 @@ export class CartComponent implements OnInit {
       console.log("len: ",this.totalItemsInCart)
 
       console.log(response);
+      this.updateData();
     });
   }
 

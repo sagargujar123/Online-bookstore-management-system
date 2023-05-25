@@ -6,7 +6,6 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root'
 })
 export class AuthService {
-  // currentUser$: any;
 
   constructor(
     private router:Router,
@@ -17,8 +16,7 @@ export class AuthService {
   }
 
   isLogout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
+    localStorage.clear();
     this.messageService.add({ severity: 'success', summary: 'success', detail: 'User Logout Successfully',life: 3000 });
     this.router.navigate(['login']);
   }

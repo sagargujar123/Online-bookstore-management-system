@@ -1,31 +1,35 @@
-<form [formGroup]="updateUserRole" #form1="ngForm" (ngSubmit)="updateRole()">
+<form [formGroup]="updateUser" #form1="ngForm" (ngSubmit)="updateUserProfile()">
 
     <!-- user name -->
     <div class="mb-3">
         <label for="username" class="block text-900 font-medium mb-2">User Name</label>
-        <input id="username" type="text" pInputText formControlName="name" class="w-full" readonly>
+        <input id="username" type="text" pInputText formControlName="name" class="w-full">
     </div>
 
     <!-- email -->
     <div class="mb-3">
         <label for="email" class="block text-900 font-medium mb-2">Email</label>
-        <input id="email" type="text" pInputText formControlName="email" class="w-full" readonly>
+        <input id="email" type="text" pInputText formControlName="email" class="w-full">
     </div>
 
     <!-- contact no -->
     <div class="mb-3">
         <label for="contact" class="block text-900 font-medium mb-2">Contact Number</label>
-        <input id="contact" type="number" pInputText formControlName="contactNumber" class="w-full" readonly>
+        <input id="contact" type="number" pInputText formControlName="contactNumber" class="w-full">
     </div>
 
     <!-- user role -->
     <div class="mb-3">
-        <label for="role" class="block text-900 font-medium mb-2">User Role</label>
+        <label for="role" class="block text-900 font-medium mb-2">User Role
+            <span class="form-text"
+                *ngIf="(updateUser.get('role')?.errors?.['required']) && (updateUser.get('role')?.touched)">
+                *</span>
+        </label>
         <input id="role" type="text" placeholder="Enter role (admin/user)" pInputText formControlName="role"
-            class="w-full">
+            class="w-full" readonly>
     </div>
 
     <!-- Update button -->
-    <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil"
+    <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil" [disabled]="form1?.invalid"
         class="p-button-success p-button-raised w-full mt-3"></button>
 </form>

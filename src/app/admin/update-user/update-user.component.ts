@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserListService } from 'src/app/services/user-list.service';
+import { UserProfileComponent } from '../../user/user-profile/user-profile.component';
 
 @Component({
   selector: 'app-update-user',
@@ -11,24 +12,27 @@ import { UserListService } from 'src/app/services/user-list.service';
 })
 export class UpdateUserComponent implements OnInit {
   userId = localStorage.getItem('updateUserId');
-  updateUserRole: any;
+  updateUser: any;
   responseItem: any;
+
+  ref!:DynamicDialogRef;
 
   constructor(
     private formbuilder: FormBuilder,
     private userListService: UserListService,
     private messageService: MessageService,
-    private dialogRef: DynamicDialogRef
+    private dialogRef: DynamicDialogRef,
+    private dialogService:DialogService
   ) { }
 
   ngOnInit(): void {
     this.getUser();
 
-    this.updateUserRole = this.formbuilder.group({
-      name: [''],
-      email: [''],
-      contactNumber: [''],
-      role: ['']
+    this.updateUser = this.formbuilder.group({
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      contactNumber: new FormControl('', [Validators.required]),
+      role: new FormControl('', [Validators.required]),
     });
   }
 
@@ -41,7 +45,7 @@ export class UpdateUserComponent implements OnInit {
   }
 
   setData() {
-    this.updateUserRole.patchValue({
+    this.updateUser.patchValue({
       name: this.responseItem.name,
       email: this.responseItem.email,
       contactNumber: this.responseItem.contactNumber,
@@ -49,17 +53,27 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 
-  updateRole() {
+  updateUserProfile() {
     const id = this.responseItem.id;
-    const data = this.updateUserRole.value;
+    const data = this.updateUser.value;
 
     this.userListService.updateUserRole(id, data).subscribe((response: any) => {
       console.log(response);
       if (response.statusCode === 200) {
         this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
-        this.updateUserRole.reset();
+        this.updateUser.reset();
         this.dialogRef.close();
+        this.showProfileComponent();
       }
+    });
+  }
+
+  showProfileComponent(){
+    this.ref = this.dialogService.open(UserProfileComponent, {
+      header: 'Profile',
+      width: '680px',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
     });
   }
 }

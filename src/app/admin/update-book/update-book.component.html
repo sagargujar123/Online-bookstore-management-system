@@ -8,37 +8,61 @@
 
     <!-- bookName -->
     <div class="mb-3">
-        <label for="bookName" class="block text-900 font-medium mb-2">Book Name</label>
+        <label for="bookName" class="block text-900 font-medium mb-2">Book Name
+            <span class="form-text"
+                *ngIf="(updateBookForm.get('bookName')?.errors?.['required']) && (updateBookForm.get('bookName')?.touched)">
+                *</span>
+        </label>
         <input id="bookName" type="text" pInputText formControlName="bookName" class="w-full">
     </div>
 
     <!-- bookImage -->
     <div class="mb-3">
-        <label for="bookImage" class="block text-900 font-medium mb-2">Book Image</label>
+        <label for="bookImage" class="block text-900 font-medium mb-2">Book Image
+            <span class="form-text"
+                *ngIf="(updateBookForm.get('imageUrl')?.errors?.['required']) && (updateBookForm.get('imageUrl')?.touched)">
+                *</span>
+        </label>
         <input id="bookImage" type="text" pInputText formControlName="imageUrl" class="w-full">
     </div>
 
     <!-- bookDetail -->
     <div class="mb-3">
-        <label for="bookDetail" class="block text-900 font-medium mb-2">Book Information</label>
+        <label for="bookDetail" class="block text-900 font-medium mb-2">Book Information
+            <span class="form-text"
+                *ngIf="(updateBookForm.get('bookDetail')?.errors?.['required']) && (updateBookForm.get('bookDetail')?.touched)">
+                *</span>
+        </label>
         <input id="bookDetail" type="text" pInputText formControlName="bookDetail" class="w-full">
     </div>
 
     <!-- author -->
     <div class="mb-3">
-        <label for="author" class="block text-900 font-medium mb-2">Book Author</label>
+        <label for="author" class="block text-900 font-medium mb-2">Book Author
+            <span class="form-text"
+                *ngIf="(updateBookForm.get('author')?.errors?.['required']) && (updateBookForm.get('author')?.touched)">
+                *</span>
+        </label>
         <input id="author" type="text" pInputText formControlName="author" class="w-full">
     </div>
 
     <!--price-->
     <div class="mb-3">
-        <label for="price" class="block text-900 font-medium mb-2">Book Price</label>
+        <label for="price" class="block text-900 font-medium mb-2">Book Price
+            <span class="form-text"
+                *ngIf="(updateBookForm.get('price')?.errors?.['required']) && (updateBookForm.get('price')?.touched)">
+                *</span>
+        </label>
         <input id="price" type="text" pInputText formControlName="price" class="w-full" maxlength="20">
     </div>
 
     <!-- availableQuantity -->
     <div class="mb-3">
-        <label for="availableQty" class="block text-900 font-medium mb-2">Available Quantity</label>
+        <label for="availableQty" class="block text-900 font-medium mb-2">Available Quantity
+            <span class="form-text"
+                *ngIf="(updateBookForm.get('availableQuantity')?.errors?.['required']) && (updateBookForm.get('availableQuantity')?.touched)">
+                *</span>
+        </label>
         <input type="text" pInputText formControlName="availableQuantity" #availableQty
             (change)="changeStatus(availableQty.value)" class="w-full">
     </div>
@@ -50,6 +74,6 @@
     </div>
 
     <!-- Update book button -->
-    <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil"
+    <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil" [disabled]="form1?.invalid"
         class="p-button-success p-button-raised w-full mt-3"></button>
 </form>

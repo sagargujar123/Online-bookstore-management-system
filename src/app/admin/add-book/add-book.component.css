@@ -3,3 +3,8 @@
     outline-offset: 0;
     box-shadow: none;
 }
+
+.form-text{
+    color: rgb(254, 82, 82);
+    font-size: 18px;
+}

@@ -19,20 +19,48 @@
     z-index: 1030;
 }
 
+.profile{
+    padding: 7px;
+    color: white;
+}
+
+.profile:hover{
+    /* background-color: orange;
+    padding: 7px;
+    border-radius: 5px; */
+    color: rgb(16, 177, 16);
+}
+
+:host ::ng-deep .p-dialog-mask{
+    top: 67px;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header{
+    padding: 0px !important;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content{
+    padding: 0px;
+    padding-bottom: 1rem;
+}
+
 .logoutBtn{
     text-decoration: none;
-    color:rgb(186, 183, 183);
-    margin-right: 10px;
+    color: white;
+    padding: 6px 1.3rem;
+    margin: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid white;
+    opacity: 0.6;
 }
 
 .logoutBtn:hover{
-    cursor: pointer;
-    color: white;
+   opacity: 1;
 }
-/* .search-icon {
-    position: absolute;
-    z-index: 10;
-    right: 26%;
-    top: 28px;
-    color: grey;
-} */
+
+::ng-deep .custom-dialog .p-dialog-content {
+    /* background-image: url('https://t3.ftcdn.net/jpg/03/51/51/28/360_F_351512882_2kFH8IaSe4lyA7SXBLzEXyGKNEgbO1iH.jpg'); */
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/010/945/926/small/green-background-simple-flat-full-of-dimensional-lines-free-vector.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

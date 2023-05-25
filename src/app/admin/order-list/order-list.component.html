@@ -9,7 +9,14 @@
 
     <!-- show orders list -->
     <div class="row mt-3">
-        <p-table [value]="orderList" dataKey="orderId">
+        <p-table #dt [value]="orderList" [globalFilterFields]="['orderId']" styleClass="border border-warning" dataKey="orderId">
+            <ng-template pTemplate="caption">
+                <div class="p-input-icon-left" style="margin-left: 1px;">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText pKeyFilter="int" class="p-inputtext-sm" placeholder="Search Order Id"
+                        (input)="dt.filterGlobal($any($event.target).value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th>OrderId</th>
@@ -24,8 +31,8 @@
             </ng-template>
             <ng-template pTemplate="body" let-orderList>
                 <tr>
-                    <td class="fw-bold text-primary cursor-pointer" [pRowToggler]="orderList">{{orderList.orderId}}</td>
-                    <td>{{orderList.orderDate}}</td>
+                    <td class="fw-bold cursor-pointer" [pRowToggler]="orderList">{{orderList.orderId}}</td>
+                    <td>{{orderList.orderDate | date:'dd-MM-yyyy, hh:mm a'}}</td>
                     <td>{{orderList.totalCost | currency:'INR'}}</td>
                     <td class="text-danger">{{orderList.promoCode}}</td>
                     <td class="text-danger">{{orderList.discountAmount | currency:'INR'}}</td>
@@ -45,8 +52,7 @@
                 <tr>
                     <td colspan="8">
                         <div class="p-4">
-                            <p-table [value]="orderList.orderItemList"
-                                styleClass="p-datatable-gridlines border border-secondary">
+                            <p-table [value]="orderList.orderItemList">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th>Sr.No.</th>

@@ -7,10 +7,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  userName:any;
+  visible:boolean=false;
+
   constructor(
     private authService: AuthService) {
   }
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.userName=localStorage.getItem('userName');
+  }
+
+  showDialog(){
+    this.visible=true;
+  }
 
   logout() {
     this.authService.isLogout();

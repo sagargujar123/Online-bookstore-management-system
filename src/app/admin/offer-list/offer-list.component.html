@@ -11,7 +11,14 @@
         </div>
     </div>
     <div class="row mt-3">
-        <p-table [value]="offers" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '40rem'}">
+        <p-table #dt [value]="offers" [globalFilterFields]="['offerId']" styleClass="p-datatable-striped border border-warning" [tableStyle]="{'min-width': '40rem'}">
+            <ng-template pTemplate="caption">
+                <div class="p-input-icon-left" style="margin-left: 1px;">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText pKeyFilter="int" class="p-inputtext-sm" placeholder="Search Offer Id"
+                        (input)="dt.filterGlobal($any($event.target).value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th>OfferId</th>

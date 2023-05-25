@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BookListService } from 'src/app/services/book-list.service';
@@ -26,12 +26,12 @@ export class UpdateBookComponent implements OnInit {
 
     this.updateBookForm = this.formbuilder.group({
       id: [''],
-      bookName: [''],
-      imageUrl: [''],
-      bookDetail: [''],
-      author: [''],
-      price: [''],
-      availableQuantity: [''],
+      bookName: new FormControl('',[Validators.required]),
+      imageUrl: new FormControl('',[Validators.required]),
+      bookDetail: new FormControl('',[Validators.required]),
+      author: new FormControl('',[Validators.required]),
+      price: new FormControl('',[Validators.required]),
+      availableQuantity: new FormControl('',[Validators.required]),
       status: ['']
     });
   }

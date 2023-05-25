@@ -14,7 +14,11 @@ export class OrderService {
   }
 
   getOrderByUserId(userId:any){
-    return this.http.get(`${this.baseUrl}/order/add/${userId}`);
+    return this.http.get(`${this.baseUrl}/order/orderitems/${userId}`);
+  }
+
+  addOrderByUserId(data:any){
+    return this.http.post(`${this.baseUrl}/order/add`,data)
   }
 
   getOrderList(userId:any){

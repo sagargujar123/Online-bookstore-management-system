@@ -41,7 +41,7 @@ export class BookListComponent implements OnInit {
       header: 'Add New Book',
       width: '410px',
       contentStyle: { overflow: 'auto' },
-      baseZIndex: 1000,
+      baseZIndex: 10000,
     });
     
     this.ref.onClose.subscribe(() => {

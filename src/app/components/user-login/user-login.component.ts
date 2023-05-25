@@ -13,7 +13,8 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
 export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
   userId: any;
-  userRole: any;
+  email: any;
+  contactNumber:any;
 
   constructor(private formbuilder: FormBuilder,
     private loginService: LoginServiceService,
@@ -40,17 +41,19 @@ export class UserLoginComponent implements OnInit {
     }
 
     this.loginService.userLoginData(data).subscribe((response) => {
-      this.userRole = response.data.role;
+      this.email = response.data.email;
+      this.contactNumber=response.data.contactNumber;
       localStorage.setItem('token', response.data.sessionToken);
       localStorage.setItem('userId', response.data.id);
+      localStorage.setItem('userName',response.data.name);
       console.log(response);
 
       if (response.statusCode == 200) {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message, life: 3000 });
-        if (this.userRole == "user") {
-          this.router.navigate(['user']);
-        } else {
+        if (this.email == "admin@gmail.com" && this.contactNumber=="9999999999") {
           this.router.navigate(['admin']);
+        } else {
+          this.router.navigate(['user']);
         }
       }
     });

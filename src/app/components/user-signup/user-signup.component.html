@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="surface-card p-4 shadow-2 border-round  w-11 xs:w-2 sm:w-6 md:w-5 lg:w-4 my-5">
+        <div class="surface-card p-4 shadow-2 border-round border-1 border-warning w-11 xs:w-2 sm:w-6 md:w-5 lg:w-4 my-5">
             <div class="text-center mb-3">
-                <div class="text-600 text-2xl font-medium mb-3 text-blue-500">Sign Up</div>
+                <div class="text-600 text-2xl font-medium mb-3"><span class="text-warning">Sign Up</span></div>
                 <span class="text-600 font-medium line-height-3">Already have an account?</span>
-                <a class="font-medium ml-2 text-blue-500 cursor-pointer" routerLink="/login">Login Now!</a>
+                <a class="font-medium ml-2 text-warning cursor-pointer" routerLink="/login">Login Now!</a>
             </div>
 
             <form [formGroup]="signupForm" #form1="ngForm" (ngSubmit)="userSignUp()">
@@ -13,7 +13,7 @@
                 <div class="mb-3">
                     <label for="username" class="block text-900 font-medium mb-2">Name</label>
                     <input id="username" type="text" placeholder="Enter fullname" pInputText formControlName="name"
-                        class="w-full">
+                        class="w-full border-warning">
 
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('name')?.errors?.['required']) && (signupForm.get('name')?.touched)">
@@ -26,7 +26,7 @@
                 <div class="mb-3">
                     <label for="email1" class="block text-900 font-medium mb-2">Email</label>
                     <input id="email1" type="email" placeholder="Enter email address" pInputText formControlName="email"
-                        class="w-full">
+                        class="w-full border-warning">
 
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('email')?.errors?.['required']) && (signupForm.get('email')?.touched)">
@@ -40,7 +40,7 @@
                 <div class="mb-3">
                     <label for="contact" class="block text-900 font-medium mb-2">Contact Number</label>
                     <input id="contact" type="number" placeholder="Enter contact number" pInputText
-                        formControlName="contact" class="w-full">
+                        formControlName="contact" class="w-full border-warning">
 
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('contact')?.errors?.['required']) && (signupForm.get('contact')?.touched)">
@@ -55,7 +55,7 @@
                     <label for="password1" class="block text-900 font-medium mb-2">Password</label>
                     <span class="p-input-icon-right w-full">
                         <input id="password1" type="password" pInputText placeholder="Enter password" 
-                        formControlName="password" [type]="hide ? 'password' : 'text'" class="w-full" maxlength="20">
+                        formControlName="password" [type]="hide ? 'password' : 'text'" class="w-full border-warning" maxlength="20">
                         <i type="button" class="{{hide ? 'pi pi-eye-slash': 'pi pi-eye'}}" (click)="hide=!hide"></i>
                     </span>    
 
@@ -73,7 +73,7 @@
                     <label for="confirm password1" class="block text-900 font-medium mb-2">Confirm Password</label>
                     <span class="p-input-icon-right w-full">
                         <input id="confirm password1" type="password" pInputText placeholder="Enter password" 
-                        formControlName="confirmPassword" [type]="confhide ? 'password' : 'text'" class="w-full" maxlength="20">
+                        formControlName="confirmPassword" [type]="confhide ? 'password' : 'text'" class="w-full border-warning" maxlength="20">
                         <i type="button" class="{{confhide ? 'pi pi-eye-slash': 'pi pi-eye'}}" (click)="confhide=!confhide"></i>
                     </span>    
 
@@ -88,7 +88,7 @@
 
                 <!-- sign in button -->
                 <button type="submit" pButton pRipple label="Sign Up" icon="pi pi-user" [disabled]="validateSubmit() || form1?.invalid"
-                    class="w-full mt-3"></button>
+                    class="w-full mt-3 p-button-warning"></button>
             </form>
         </div>
     </div>

@@ -1,19 +1,26 @@
 <div class="container">
-    <div class="row mt-3 pb-3">
-        <p-table [value]="orderList" dataKey="orderId">
+    <div class="row mt-4 p-3 border rounded-3" style="box-shadow: 1px 1px 16px rgb(193, 191, 191);">
+        <div class="d-flex flex-row flex-wrap justify-content-between pb-2">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h4 style="color: rgba(253, 183, 32, 0.986)">Your All Order Status</h4>
+            </div>
+            <div class="text-right text-primary">
+                <h4>Total Orders: {{totalOrders}}</h4>
+            </div>
+        </div>
+        <p-table #dt [value]="orderList" [scrollable]="true" dataKey="orderId" [globalFilterFields]="['orderId']"
+            styleClass="border-1 border-warning">
             <ng-template pTemplate="caption">
-                <div class="p-d-flex p-ai-center p-jc-between">
-                    Your All Order Status
-                </div>
-                <div class="text-right text-primary">
-                    Total Orders: {{totalOrders}}
+                <div class="p-input-icon-left" style="margin-left: 1px;">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText class="p-inputtext-sm" placeholder="Search Order Id"
+                        (input)="dt.filterGlobal($any($event.target).value, 'contains')" style="width:auto">
                 </div>
             </ng-template>
-
             <!-- show order list -->
             <ng-template pTemplate="header">
                 <tr>
-                    <th>OrderId</th>
+                    <th style="min-width:50px;">OrderId</th>
                     <th>Order Date</th>
                     <th>Total Amount</th>
                     <th>Offer Code</th>
@@ -24,8 +31,11 @@
             </ng-template>
             <ng-template pTemplate="body" let-orderList>
                 <tr>
-                    <td class="fw-bold text-primary cursor-pointer" [pRowToggler]="orderList">{{orderList.orderId}}</td>
-                    <td>{{orderList.orderDate}}</td>
+                    <td (click)="selected(orderList.orderId)"
+                        [style.Color]="orderList.orderId==selectedId ? 'orange':''" class="fw-bold cursor-pointer ms-0"
+                        [pRowToggler]="orderList">{{orderList.orderId}}
+                    </td>
+                    <td>{{orderList.orderDate | date:'dd-MM-yyyy, hh:mm a'}}</td>
                     <td>{{orderList.totalCost | currency:'INR'}}</td>
                     <td class="text-danger">{{orderList.promoCode}}</td>
                     <td class="text-danger">{{orderList.discountAmount | currency:'INR'}}</td>
@@ -42,7 +52,7 @@
                     <td colspan="7">
                         <div class="p-4">
                             <p-table [value]="orderList.orderItemList"
-                                styleClass="p-datatable-gridlines border border-secondary">
+                                styleClass="p-datatable-gridlines border border-warning">
                                 <ng-template pTemplate="header">
                 <tr>
                     <th>Sr. No.</th>
@@ -67,6 +77,13 @@
     </div>
     </td>
     </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td colspan="7" style="justify-content: center; flex: 1 1 0 !important;">
+                No records found
+            </td>
+        </tr>
     </ng-template>
     </p-table>
 </div>

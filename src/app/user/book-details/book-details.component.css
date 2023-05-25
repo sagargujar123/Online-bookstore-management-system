@@ -1,5 +1,6 @@
 p{
     font-style: italic;
+    margin:5px 0px;
   }
 
   :host ::ng-deep .p-button.p-button-warning:enabled:focus {

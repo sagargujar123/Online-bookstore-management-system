@@ -19,11 +19,12 @@ export class OrdersComponent implements OnInit {
   orderId: any;
   orderDate: any;
   totalCost: any;
-  paymentStatus: any;
-  showInputBox: boolean = true;
   discount: any;
   actualAmount: any;
   promoCodeForm!: FormGroup;
+  promoCode: any;
+  totalItemsInCart: any;
+  responsiveOptions!:any[];
 
   constructor(
     private orderService: OrderService,
@@ -31,7 +32,7 @@ export class OrdersComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private formbuilder: FormBuilder,
-    private cartService:CartService) { }
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getAllOffers();
@@ -39,7 +40,25 @@ export class OrdersComponent implements OnInit {
 
     this.promoCodeForm = this.formbuilder.group({
       offerCode: new FormControl('')
-    })
+    });
+
+    this.responsiveOptions = [
+      {
+          breakpoint: '1199px',
+          numVisible: 1,
+          numScroll: 1
+      },
+      {
+          breakpoint: '991px',
+          numVisible: 2,
+          numScroll: 1
+      },
+      {
+          breakpoint: '767px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
   }
 
   getAllOffers() {
@@ -52,13 +71,11 @@ export class OrdersComponent implements OnInit {
   getOrder() {
     this.orderService.getOrderByUserId(this.userId).subscribe((response: any) => {
       this.orderItems = response.orderItemList;
-
-      this.orderId = response.orderId;
-      this.orderDate = response.orderDate;
+      this.totalItemsInCart = this.orderItems.length;
       this.totalCost = response.totalCost;
-      this.paymentStatus = response.paymentStatus;
 
       console.log(response);
+      this.updateData();
     });
   }
 
@@ -70,10 +87,8 @@ export class OrdersComponent implements OnInit {
   }
 
   applyOffer(code: any) {
-    this.showInputBox = false;
     const payload = {
       userId: this.userId,
-      orderId: this.orderId,
       promoCode: code,
       totalCost: this.totalCost
     }
@@ -83,20 +98,53 @@ export class OrdersComponent implements OnInit {
       console.log(response);
 
       if (response.statusCode === 200) {
-        this.discount = response.discountAmount;
-        this.actualAmount = response.actualAmount;
+        this.discount = response.data.discountAmount;
+        this.actualAmount = response.data.actualAmount;
+        this.promoCode = response.data.promoCode;
         this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
       }
     });
   }
 
   payAmount() {
-    this.updateData();
-    this.messageService.add({ severity: 'success', summary: 'success', detail: 'Order Placed Successfully' });
-    this.router.navigate(['user/orderlist']);
+    if (this.promoCode != null) {
+      const payload = {
+        promoCode: this.promoCode,
+        userId: this.userId
+      }
+      this.orderService.addOrderByUserId(payload).subscribe((response: any) => {
+        if (response.statusCode === 201) {
+          this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
+          this.orderId = response.data.orderId;
+          this.getTotalItemsFromCart();
+        }
+        console.log(response);
+      });
+    } else {
+      const payload = {
+        userId: this.userId
+      }
+      this.orderService.addOrderByUserId(payload).subscribe((response: any) => {
+        if (response.statusCode === 201) {
+          this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
+          this.orderId = response.data.orderId;
+          this.getTotalItemsFromCart();
+        }
+        console.log(response);
+      });
+    }
+  }
+
+  getTotalItemsFromCart() {
+    this.userId = localStorage.getItem('userId');
+    this.cartService.getAllBooksFromCart(this.userId).subscribe((response: any) => {
+      this.totalItemsInCart = response.cartItems.length;
+      console.log(response);
+      this.updateData();
+    });
   }
 
   updateData() {
-    this.cartService.updateData(0);
+    this.cartService.updateData(this.totalItemsInCart);
   }
 }

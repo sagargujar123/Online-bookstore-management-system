@@ -1,16 +1,17 @@
 <p-toast [breakpoints]="{'576px': {width: '100%', right: '0', left: '0'}}"></p-toast>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top shadow-sm py-0">
+<nav class="navbar navbar-expand-lg navbar-dark border-bottom fixed-top shadow-sm py-0"
+  style="background-image: linear-gradient(to bottom right,orange, rgba(246, 179, 34, 0.986));">
   <div class="container-fluid">
     <div class="navbar-brand d-flex align-items-center">
       <img src="../../assets/images/books.jpg" class="mx-0 py-0 rounded-circle" alt="" width="80px" height="70px">
-      <h4 class="px-0 fs-1 text-success"><i>Shiksha</i></h4>
+      <h4 class="px-0 fs-1 text-white"><i>Shiksha</i></h4>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class=""><i class="pi pi-bars"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="userlist">User List</a>
         </li>
@@ -22,11 +23,25 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link logoutBtn" routerLinkActive="active" (click)="logout()">Logout</a>
+      <ul class="navbar-nav ml-auto mb-2 list-none">
+        <li>
+          <span class="cursor-pointer profile" (click)="showDialog()">Hi, {{userName | titlecase}}
+            <i class="pi pi-user"></i>
+          </span>
         </li>
       </ul>
+
     </div>
   </div>
 </nav>
+
+<p-dialog [(visible)]="visible" position="top-right" [style]="{ width: '20vw' }">
+  <ng-template pTemplate="body">
+    <div class="text-center mt-2">
+      <h5 class="text-warning"><span class="text-primary">Hi, </span>{{userName | titlecase}}</h5>
+    </div>
+    <div class="text-left mt-3">
+      <p class="cursor-pointer logoutBtn" (click)="logout()">Logout</p>
+    </div>
+  </ng-template>
+</p-dialog>

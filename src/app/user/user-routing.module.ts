@@ -7,6 +7,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UserComponent } from './user/user.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'checkout', component: CheckoutComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'orderlist', component: OrderListComponent },
+      { path: 'profile', component: UserProfileComponent },
       { path: '', redirectTo: '/user/books', pathMatch: 'full' },
     ]
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { OfferListService } from 'src/app/services/offer-list.service';
@@ -21,12 +21,12 @@ export class AddOfferComponent implements OnInit {
 
   ngOnInit(): void {
     this.addOfferForm = this.formbuilder.group({
-      promoCode: [''],
-      discountAmount: [''],
-      applicableAmount: [''],
-      startDate: [''],
-      endDate: [''],
-      maxApply: ['']
+      promoCode: new FormControl('',[Validators.required]),
+      discountAmount: new FormControl('',[Validators.required]),
+      applicableAmount: new FormControl('',[Validators.required]),
+      startDate: new FormControl('',[Validators.required]),
+      endDate: new FormControl('',[Validators.required]),
+      maxApply: new FormControl('',[Validators.required]),
     });
   }
 

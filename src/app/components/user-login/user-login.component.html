@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="surface-card p-4 shadow-2 border-round  w-11 xs:w-2 sm:w-6 md:w-5 lg:w-3 mt-5">
+        <div class="surface-card p-4 shadow-2 border-round border-1 border-warning  w-11 xs:w-2 sm:w-6 md:w-5 lg:w-3">
             <div class="text-center mb-3">
-                <div class="text-600 text-2xl font-medium mb-3 text-blue-500">Sign In</div>
+                <div class="text-600 text-2xl font-medium mb-3"><span class="text-warning">Sign In</span></div>
                 <span class="text-600 font-medium line-height-3">Don't have an account?</span>
-                <a class="font-medium ml-2 text-blue-500 cursor-pointer" routerLink="/signup">Sign Up Now!</a>
+                <a class="font-medium ml-2 text-warning cursor-pointer" routerLink="/signup">Sign Up Now!</a>
             </div>
 
             <form [formGroup]="loginForm" #form1="ngForm" (ngSubmit)="userLogin()">
@@ -14,14 +14,14 @@
                 <span class="p-input-icon-left w-full">
                     <i class="bi bi-envelope"></i>
                     <input id="email1" type="email" placeholder="Enter email address" pInputText formControlName="email"
-                        class="w-full">
+                        class="w-full border-warning">
                 </span>
 
-                <div class="form-text text-red-500"
+                <!-- <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('email')?.errors?.['required']) && (loginForm.get('email')?.touched)">
                     Email required*</div>
                 <div class="form-text text-red-500" *ngIf="loginForm.get('email')?.errors?.['email']">
-                    Email should be abc@gmail.com</div>
+                    Email should be abc@gmail.com</div> -->
 
 
                 <!-- password -->
@@ -29,27 +29,27 @@
                 <span class="p-input-icon-left w-full">
                     <i class="pi pi-lock pt-1"></i>
                     <input id="password1" type="password" placeholder="Enter password" pInputText formControlName="password"
-                        required="required" maxlength="20" class="w-full">
+                        required="required" maxlength="20" class="w-full border-warning">
                 </span>
 
-                <div class="form-text text-red-500"
+                <!-- <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('password')?.errors?.['required']) && (loginForm.get('password')?.touched)">Password
                     required*</div>
                 <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('password')?.errors?.['pattern'])">Password
-                    should not contain whitespaces</div>
+                    should not contain whitespaces</div> -->
 
                 <!-- sign in button -->
-                <div class="flex align-items-center justify-content-end mb-4 mt-3">
+                <!-- <div class="flex align-items-center justify-content-end mb-4 mt-3"> -->
                     <!-- <div class="flex align-items-center">
                         <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
                         <label for="rememberme1" class="text-900">Remember me</label>
                     </div> -->
-                    <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot
+                    <!-- <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot
                         password?</a>
-                </div>
-                <button type="submit" pButton pRipple label="Sign In" icon="pi pi-user" [disabled]="form1?.invalid"
-                    class="w-full"></button>
+                </div> -->
+                <button type="submit" pButton pRipple label="Sign In" icon="pi pi-user"
+                    class="w-full p-button-warning mt-4 mb-1"></button>
             </form>
         </div>
     </div>

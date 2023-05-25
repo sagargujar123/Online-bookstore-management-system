@@ -1,9 +1,12 @@
 <p-toast [breakpoints]="{'576px': {width: '100%', right: '0', left: '0'}}"></p-toast>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom fixed-top shadow-sm py-0">
+<nav class="navbar navbar-expand-lg navbar-dark border-bottom fixed-top shadow-sm py-0"
+  style="background-image: linear-gradient(to bottom right,orange, rgba(246, 179, 34, 0.986));">
+  <!-- background-color: rgb(249, 188, 73); orange, rgb(254, 198, 94)-->
   <div class="container-fluid">
     <div class="navbar-brand d-flex align-items-center">
-      <img src="../../assets/images/books.jpg" class="mx-0 py-0 rounded-circle" alt="" width="80px" height="70px">
-      <h4 class="px-0 fs-1 text-success"><i>Shiksha</i></h4>
+      <img src="../../assets/images/books.jpg" routerLink="/user/books" class="mx-0 py-0 cursor-pointer rounded-circle"
+        alt="" width="80px" height="70px">
+      <h4 class="px-0 fs-1 text-white"><i>Shiksha</i></h4>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,12 +23,33 @@
       </ul>
 
       <div>
-        <a class="logoutBtn" (click)="logout()">Logout</a>
-        <button routerLink="cart" class="btn btn-success py-2 mb-1">
-          <i style="font-size: 20px;" class="pi pi-cart-plus"></i>
-          <div style="font-size: 9px;" class="badge bg-danger">{{totalItemsInCart}}</div>
+        <!-- <a class="logoutBtn" (click)="logout()">Logout</a> -->
+        <span class="cursor-pointer profile" (click)="showDialog()">Hi, {{userName | titlecase}}
+        <i class="pi pi-user"></i> 
+        </span>
+
+        <button routerLink="cart" class="btn py-2 mb-1">
+          <i style="font-size: 20px;" class="pi pi-cart-plus text-white"></i>
+          <div style="font-size: 9px;" class="badge bg-success">{{totalItemsInCart}}</div>
         </button>
       </div>
     </div>
   </div>
 </nav>
+
+<p-dialog class="custom-dialog" [dismissableMask]="true" [draggable]="false" [(visible)]="visible" position="top-right" [style]="{ width: '25vw' }">
+  <ng-template pTemplate="header">
+    <div class="ml-2 mt-2">
+      <h5 class="text-warning"><i>Welcome.....</i></h5>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="body">
+    <div class="text-center mt-2">
+      <h5 class="text-light">Hi, <span class="text-white">{{userName | titlecase}}</span></h5>
+    </div>
+    <div class="text-left mt-3">
+      <p class="cursor-pointer logoutBtn" (click)="showProfileDialog()">View Profile</p>
+      <p class="cursor-pointer logoutBtn" (click)="logout()">Logout</p>
+    </div>
+  </ng-template>
+</p-dialog>

@@ -16,6 +16,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BadgeModule } from 'primeng/badge';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { CarouselModule } from 'primeng/carousel'
 
 const materialComponents = [
   AccordionModule,
@@ -31,7 +32,8 @@ const materialComponents = [
   AvatarModule,
   ProgressSpinnerModule,
   BadgeModule,
-  DynamicDialogModule
+  DynamicDialogModule,
+  CarouselModule
 ];
 
 @NgModule({

@@ -11,8 +11,15 @@
         </div>
     </div>
     <div class="row mt-3">
-        <p-table [value]="books">
-            <ng-template pTemplate="header" class="border">
+        <p-table #dt [value]="books" [globalFilterFields]="['id','bookName','author','price','availableQuantity','status']" styleClass="border border-warning">
+            <ng-template pTemplate="caption">
+                <div class="p-input-icon-left" style="margin-left: 1px;">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText class="p-inputtext-sm" placeholder="Search Book"
+                        (input)="dt.filterGlobal($any($event.target).value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
                 <tr>
                     <th>BookId</th>
                     <th>BookName</th>
@@ -31,7 +38,7 @@
                     <td>{{books.bookName}}</td>
 
 
-                    <td><img [src]="books.imageUrl" alt="" width="45px"></td>
+                    <td><img [src]="books.imageUrl" [alt]="books.imageUrl" width="45px"></td>
                     <td>{{books.bookDetail}}</td>
                     <td>{{books.author}}</td>
                     <td>{{books.price | currency:'INR'}}</td>
