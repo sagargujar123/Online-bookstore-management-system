@@ -24,8 +24,8 @@
 
       <div>
         <!-- <a class="logoutBtn" (click)="logout()">Logout</a> -->
-        <span class="cursor-pointer profile" (click)="showDialog()">Hi, {{userName | titlecase}}
-        <i class="pi pi-user"></i> 
+        <span class="cursor-pointer profile" [class.myclass]="visible==true" (click)="showDialog()">Hi, {{userName | titlecase}}
+        <i class="pi pi-user p-1 bg-white border border-warning rounded text-warning"></i> 
         </span>
 
         <button routerLink="cart" class="btn py-2 mb-1">
@@ -48,8 +48,8 @@
       <h5 class="text-light">Hi, <span class="text-white">{{userName | titlecase}}</span></h5>
     </div>
     <div class="text-left mt-3">
-      <p class="cursor-pointer logoutBtn" (click)="showProfileDialog()">View Profile</p>
-      <p class="cursor-pointer logoutBtn" (click)="logout()">Logout</p>
+      <p class="cursor-pointer logoutBtn" (click)="showProfileDialog()"><span class="pi pi-user mr-2"></span>View Profile</p>
+      <p class="cursor-pointer logoutBtn" (click)="logout()"><span class="pi pi-power-off mr-2"></span>Sign Out</p>
     </div>
   </ng-template>
 </p-dialog>

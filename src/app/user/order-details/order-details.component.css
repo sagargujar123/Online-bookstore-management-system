@@ -1,0 +1,9 @@
+/* :host ::ng-deep .p-card .p-card-body{
+    padding: 0px;
+} */
+:host ::ng-deep .p-card .p-card-body .p-card-content{
+    padding: 5px 10px !important;
+    border: 1px solid rgb(253, 178, 39);
+    border-radius: 7px;
+    box-shadow: 1px 1px 10px rgb(225, 223, 223);
+}

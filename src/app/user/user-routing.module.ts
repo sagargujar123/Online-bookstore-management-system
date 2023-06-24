@@ -8,6 +8,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UserComponent } from './user/user.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'orders', component: OrdersComponent },
       { path: 'orderlist', component: OrderListComponent },
       { path: 'profile', component: UserProfileComponent },
+      { path: 'orderdetail/:id', component: OrderDetailsComponent },
       { path: '', redirectTo: '/user/books', pathMatch: 'full' },
     ]
   }

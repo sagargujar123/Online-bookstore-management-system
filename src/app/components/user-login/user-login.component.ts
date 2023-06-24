@@ -34,6 +34,11 @@ export class UserLoginComponent implements OnInit {
   }
 
   userLogin() {
+    if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
     var formData = this.loginForm.value;
     var data = {
       email: formData.email,
@@ -46,6 +51,7 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('token', response.data.sessionToken);
       localStorage.setItem('userId', response.data.id);
       localStorage.setItem('userName',response.data.name);
+      localStorage.setItem('userRole',response.data.role);
       console.log(response);
 
       if (response.statusCode == 200) {

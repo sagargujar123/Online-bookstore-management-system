@@ -1,22 +1,22 @@
 <div class="border border-1 border-warning rounded">
     <div class="row">
         <div class="col-xs-12 col-sm-5 text-center">
-            <img src="../../../assets/images/profile.jpg" class="image" alt="profile photo">
+            <img src="../../../assets/images/profile.jpg" class="image cursor-pointer" (click)="showUpdateDialog()" alt="profile photo">
         </div>
         <div *ngIf="userData" class="col-xs-12 col-sm-7">
             <div class="row p-2">
                 <div class="col-6 col-xs-6 col-sm-6 form-group">
-                    <p>Name</p>
-                    <h6>{{userData.name}}</h6>
+                    <p>Your Name</p>
+                    <h6>{{userData.name | titlecase}}</h6>
                 </div>
                 <div class="col-6 col-xs-6 col-sm-6 form-group">
                     <p>Role</p>
-                    <h6>{{userData.role}}</h6>
+                    <h6>{{userData.role | titlecase}}</h6>
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-6 col-xs-6 col-sm-6 form-group">
-                    <p>Email</p>
+                    <p>Email Address</p>
                     <h6>{{userData.email}}</h6>
                 </div>
                 <div class="col-6 col-xs-6 col-sm-6 form-group">
@@ -25,12 +25,10 @@
                 </div>
             </div>
             <div class="row p-2">
-                <div class="col-6 col-xs-6 col-sm-6 form-group">
-                    <button type="button" pButton label="Update Profile" (click)="showUpdateDialog()" class="p-button-warning p-button-sm"></button>
+                <div class="col-12 col-xs-12 col-sm-12 form-group text-start pr-5">
+                    <button type="button" class="p-button-outlined p-button-success p-button-sm w-full" pButton label="Update Profile" (click)="showUpdateDialog()"></button>
                 </div>
             </div>
         </div>
     </div>
-    
-    
 </div>

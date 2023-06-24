@@ -11,7 +11,12 @@
         </div>
     </div>
     <div class="row mt-3">
-        <p-table #dt [value]="books" [globalFilterFields]="['id','bookName','author','price','availableQuantity','status']" styleClass="border border-warning">
+        <p-table #dt [value]="books"
+            [globalFilterFields]="['id','bookName','author','price','availableQuantity','status']"
+            styleClass="border border-warning" [scrollable]="true" scrollDirection="horizontal" [paginator]="true"
+            [rows]="4" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {{totalBooks}} entries"
+            [rowsPerPageOptions]="[4,8,12]">
             <ng-template pTemplate="caption">
                 <div class="p-input-icon-left" style="margin-left: 1px;">
                     <i class="pi pi-search"></i>

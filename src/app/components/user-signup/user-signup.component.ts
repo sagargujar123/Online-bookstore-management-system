@@ -39,6 +39,11 @@ export class UserSignupComponent implements OnInit {
   }
 
   userSignUp() {
+    if(this.signupForm.invalid || this.validateSubmit()){
+      this.signupForm.markAllAsTouched();
+      return;
+    }
+
     var formData = this.signupForm.value;
     var data = {
       name: formData.name,

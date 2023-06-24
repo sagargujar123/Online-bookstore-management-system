@@ -11,12 +11,12 @@ const routes: Routes = [
   { path: 'signup', component: UserSignupComponent },
   {
     path: 'user',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./user/user.module').then(m => m.UserModule),
   },
   {
     path: 'admin',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   { path: '**', component: PageNotFoundComponent }

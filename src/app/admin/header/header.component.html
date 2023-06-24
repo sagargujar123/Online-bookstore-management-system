@@ -35,13 +35,13 @@
   </div>
 </nav>
 
-<p-dialog [(visible)]="visible" position="top-right" [style]="{ width: '20vw' }">
+<p-dialog [(visible)]="visible" [draggable]="false" position="top-right" [style]="{ width: '20vw' }">
   <ng-template pTemplate="body">
     <div class="text-center mt-2">
       <h5 class="text-warning"><span class="text-primary">Hi, </span>{{userName | titlecase}}</h5>
     </div>
     <div class="text-left mt-3">
-      <p class="cursor-pointer logoutBtn" (click)="logout()">Logout</p>
+      <p class="cursor-pointer logoutBtn" (click)="logout()">SIGN OUT</p>
     </div>
   </ng-template>
 </p-dialog>

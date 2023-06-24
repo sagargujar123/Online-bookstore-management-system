@@ -17,11 +17,11 @@
                         class="w-full border-warning">
                 </span>
 
-                <!-- <div class="form-text text-red-500"
+                <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('email')?.errors?.['required']) && (loginForm.get('email')?.touched)">
                     Email required*</div>
                 <div class="form-text text-red-500" *ngIf="loginForm.get('email')?.errors?.['email']">
-                    Email should be abc@gmail.com</div> -->
+                    Email should be abc@gmail.com</div>
 
 
                 <!-- password -->
@@ -32,12 +32,12 @@
                         required="required" maxlength="20" class="w-full border-warning">
                 </span>
 
-                <!-- <div class="form-text text-red-500"
+                <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('password')?.errors?.['required']) && (loginForm.get('password')?.touched)">Password
                     required*</div>
                 <div class="form-text text-red-500"
                     *ngIf="(loginForm.get('password')?.errors?.['pattern'])">Password
-                    should not contain whitespaces</div> -->
+                    should not be blank.</div>
 
                 <!-- sign in button -->
                 <!-- <div class="flex align-items-center justify-content-end mb-4 mt-3"> -->

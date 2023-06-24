@@ -31,6 +31,10 @@ export class AddOfferComponent implements OnInit {
   }
 
   addOfferToOfferList() {
+    if(this.addOfferForm.invalid){
+      this.addOfferForm.markAllAsTouched();
+      return;
+    }
     const data = this.addOfferForm.value;
     this.offerListService.addOffer(data).subscribe((response: any) => {
       console.log(response);

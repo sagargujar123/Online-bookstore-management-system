@@ -1,11 +1,11 @@
-  /* .container-fluid { */
+  .container-fluid {
   /* background-color: rgb(36, 253, 217); */
-  /* background-image: url('https://media.istockphoto.com/id/108219664/photo/books-flying-through-abandoned-hallway.jpg?b=1&s=170667a&w=0&k=20&c=Jkbn-T9s8iFiBLAcVvrX_aZa9dCQTIqpVxICtFjW94o=');
+  background-image: url('https://media.istockphoto.com/id/108219664/photo/books-flying-through-abandoned-hallway.jpg?b=1&s=170667a&w=0&k=20&c=Jkbn-T9s8iFiBLAcVvrX_aZa9dCQTIqpVxICtFjW94o=');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100%;
-  } */
+  }
 
   .surface-card{
     margin-top: 55px;

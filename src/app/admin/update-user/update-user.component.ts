@@ -11,27 +11,31 @@ import { UserProfileComponent } from '../../user/user-profile/user-profile.compo
   styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
-  userId = localStorage.getItem('updateUserId');
+  userId: any;
   updateUser: any;
   responseItem: any;
+  enableReadOnly = false;
+  userRole: any;
 
-  ref!:DynamicDialogRef;
+  ref!: DynamicDialogRef;
 
   constructor(
     private formbuilder: FormBuilder,
     private userListService: UserListService,
     private messageService: MessageService,
     private dialogRef: DynamicDialogRef,
-    private dialogService:DialogService
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('updateUserId');
+    this.userRole = localStorage.getItem('userRole');
     this.getUser();
 
     this.updateUser = this.formbuilder.group({
       name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      contactNumber: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      contactNumber: new FormControl('', [Validators.required, Validators.pattern('[7-9]{1}[0-9]{9}')]),
       role: new FormControl('', [Validators.required]),
     });
   }
@@ -54,12 +58,17 @@ export class UpdateUserComponent implements OnInit {
   }
 
   updateUserProfile() {
+    if (this.updateUser.invalid) {
+      this.updateUser.markAllAsTouched();
+      return;
+    }
     const id = this.responseItem.id;
     const data = this.updateUser.value;
 
     this.userListService.updateUserRole(id, data).subscribe((response: any) => {
       console.log(response);
       if (response.statusCode === 200) {
+        localStorage.setItem('userId', id);
         this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
         this.updateUser.reset();
         this.dialogRef.close();
@@ -68,7 +77,7 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 
-  showProfileComponent(){
+  showProfileComponent() {
     this.ref = this.dialogService.open(UserProfileComponent, {
       header: 'Profile',
       width: '680px',

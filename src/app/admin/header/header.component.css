@@ -44,9 +44,10 @@
 .logoutBtn{
     text-decoration: none;
     color: rgb(21, 198, 21);
-    padding: 6px 1.3rem;
-    margin: 10px 10px;
-    border-radius: 8px;
+    padding: 5px 6px;
+    margin: 10px 160px 10px 10px;
+    border-radius: 4px;
+    border: 1px solid rgb(21, 198, 21);
 }
 
 .logoutBtn:hover{

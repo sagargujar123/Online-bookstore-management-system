@@ -14,7 +14,7 @@ import { UpdateBookComponent } from '../update-book/update-book.component'
 export class BookListComponent implements OnInit {
   books!: any;
   totalOrders: any;
-
+  totalBooks = 0;
   ref!: DynamicDialogRef;
 
   constructor(
@@ -31,6 +31,7 @@ export class BookListComponent implements OnInit {
     this.bookListService.getAllBooks().subscribe((response: any) => {
       this.books = response;
       this.totalOrders = this.books.length;
+      this.totalBooks = this.books.length;
       console.log(response);
     });
   }
@@ -43,7 +44,7 @@ export class BookListComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
-    
+
     this.ref.onClose.subscribe(() => {
       this.showBookList();
     });

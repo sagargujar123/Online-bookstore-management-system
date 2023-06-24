@@ -37,7 +37,7 @@ export class UserlistComponent implements OnInit {
     localStorage.setItem('updateUserId', userId);
     
     this.ref = this.dialogService.open(UpdateUserComponent, {
-      header: 'Update User Role',
+      header: 'Update User',
       width: '410px',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 1000,

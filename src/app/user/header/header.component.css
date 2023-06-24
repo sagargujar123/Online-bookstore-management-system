@@ -25,10 +25,16 @@
 }
 
 .profile:hover{
-    /* background-color: orange;
     padding: 7px;
-    border-radius: 5px; */
-    color: rgb(16, 177, 16);
+    background-color:white;
+    color: orange;
+    border-radius: 5px;
+}
+.myclass{
+    padding: 7px;
+    background-color:white;
+    color: orange;
+    border-radius: 4px;
 }
 
 :host ::ng-deep .p-dialog-mask{
@@ -48,10 +54,9 @@
     text-decoration: none;
     color: white;
     padding: 6px 1.3rem;
-    margin: 6px 10px;
-    border-radius: 8px;
-    border: 1px solid white;
     opacity: 0.6;
+    margin: 0px 140px 0px 10px;
+    font-size: 17px;
 }
 
 .logoutBtn:hover{
@@ -60,7 +65,7 @@
 
 ::ng-deep .custom-dialog .p-dialog-content {
     /* background-image: url('https://t3.ftcdn.net/jpg/03/51/51/28/360_F_351512882_2kFH8IaSe4lyA7SXBLzEXyGKNEgbO1iH.jpg'); */
-    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/010/945/926/small/green-background-simple-flat-full-of-dimensional-lines-free-vector.jpg');
+    background-image: url('../../../assets/images/background3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }

@@ -44,6 +44,10 @@ export class AddBookComponent implements OnInit {
   }
 
   addBookToBookList() {
+    if(this.addBookForm.invalid){
+      this.addBookForm.markAllAsTouched();
+      return;
+    }
     var data = this.addBookForm.value;
     this.bookListService.addBook(data).subscribe((response: any) => {
       console.log(response);

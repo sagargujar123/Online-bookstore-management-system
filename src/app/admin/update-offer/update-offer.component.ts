@@ -56,6 +56,10 @@ export class UpdateOfferComponent implements OnInit {
   }
 
   updateOffer(): void {
+    if(this.updateOfferForm.invalid){
+      this.updateOfferForm.markAllAsTouched();
+      return;
+    }
     const offerId = this.offerId;
     const data = this.updateOfferForm.value;
     this.offerListService.updateOfferByOfferId(offerId, data).subscribe((response: any) => {

@@ -2,20 +2,36 @@
 
     <!-- user name -->
     <div class="mb-3">
-        <label for="username" class="block text-900 font-medium mb-2">User Name</label>
+        <label for="username" class="block text-900 font-medium mb-2">User Name
+            <span class="form-text"
+                *ngIf="(updateUser.get('name')?.errors?.['required']) && (updateUser.get('name')?.touched)">
+                *</span>
+        </label>
         <input id="username" type="text" pInputText formControlName="name" class="w-full">
     </div>
 
     <!-- email -->
     <div class="mb-3">
-        <label for="email" class="block text-900 font-medium mb-2">Email</label>
+        <label for="email" class="block text-900 font-medium mb-2">Email
+            <span class="form-text"
+                *ngIf="(updateUser.get('email')?.errors?.['required']) && (updateUser.get('email')?.touched)">
+                *</span>
+        </label>
         <input id="email" type="text" pInputText formControlName="email" class="w-full">
+        <span class="form-text fs-6 text-red-500" *ngIf="updateUser.get('email')?.errors?.['email']">
+            Email format should be abc@gmail.com</span>
     </div>
 
     <!-- contact no -->
     <div class="mb-3">
-        <label for="contact" class="block text-900 font-medium mb-2">Contact Number</label>
+        <label for="contact" class="block text-900 font-medium mb-2">Contact Number
+            <span class="form-text"
+                *ngIf="(updateUser.get('contactNumber')?.errors?.['required']) && (updateUser.get('contactNumber')?.touched)">
+                *</span>
+        </label>
         <input id="contact" type="number" pInputText formControlName="contactNumber" class="w-full">
+        <span class="form-text fs-6 text-red-500" *ngIf="updateUser.get('contactNumber')?.errors?.['pattern']">
+            Contact Number should contain 10 digits only.</span>
     </div>
 
     <!-- user role -->
@@ -26,10 +42,10 @@
                 *</span>
         </label>
         <input id="role" type="text" placeholder="Enter role (admin/user)" pInputText formControlName="role"
-            class="w-full" readonly>
+            class="w-full" [attr.readonly]="enableReadOnly">
     </div>
 
     <!-- Update button -->
-    <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil" [disabled]="form1?.invalid"
+    <button type="submit" pButton pRipple label="Update" icon="pi pi-pencil"
         class="p-button-success p-button-raised w-full mt-3"></button>
 </form>

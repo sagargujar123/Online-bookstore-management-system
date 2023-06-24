@@ -24,7 +24,7 @@ export class OrdersComponent implements OnInit {
   promoCodeForm!: FormGroup;
   promoCode: any;
   totalItemsInCart: any;
-  responsiveOptions!:any[];
+  responsiveOptions!: any[];
 
   constructor(
     private orderService: OrderService,
@@ -44,21 +44,21 @@ export class OrdersComponent implements OnInit {
 
     this.responsiveOptions = [
       {
-          breakpoint: '1199px',
-          numVisible: 1,
-          numScroll: 1
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1
       },
       {
-          breakpoint: '991px',
-          numVisible: 2,
-          numScroll: 1
+        breakpoint: '991px',
+        numVisible: 2,
+        numScroll: 1
       },
       {
-          breakpoint: '767px',
-          numVisible: 1,
-          numScroll: 1
+        breakpoint: '767px',
+        numVisible: 1,
+        numScroll: 1
       }
-  ];
+    ];
   }
 
   getAllOffers() {
@@ -117,6 +117,7 @@ export class OrdersComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
           this.orderId = response.data.orderId;
           this.getTotalItemsFromCart();
+          this.router.navigate([`user/orderdetail/${this.orderId}`]);
         }
         console.log(response);
       });
@@ -129,6 +130,7 @@ export class OrdersComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'success', detail: response.message });
           this.orderId = response.data.orderId;
           this.getTotalItemsFromCart();
+          this.router.navigate([`user/orderdetail/${this.orderId}`]);
         }
         console.log(response);
       });

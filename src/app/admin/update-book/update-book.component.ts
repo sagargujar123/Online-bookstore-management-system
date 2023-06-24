@@ -70,6 +70,10 @@ export class UpdateBookComponent implements OnInit {
   }
 
   updateBook() {
+    if(this.updateBookForm.invalid){
+      this.updateBookForm.markAllAsTouched();
+      return;
+    }
     const bookId = this.bookId;
     const data = this.updateBookForm.value;
 

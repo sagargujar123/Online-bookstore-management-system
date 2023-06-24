@@ -17,9 +17,9 @@
 
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('name')?.errors?.['required']) && (signupForm.get('name')?.touched)">
-                        Name should not blank</div>
+                        Name required.</div>
                     <div class="form-text text-red-500" *ngIf="signupForm.get('name')?.errors?.['pattern']">
-                        Name should contain characters only</div>
+                        Name should contain alphabets only.</div>
                 </div>
 
                 <!-- email -->
@@ -30,7 +30,7 @@
 
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('email')?.errors?.['required']) && (signupForm.get('email')?.touched)">
-                        Email required*</div>
+                        Email required.</div>
                     <div class="form-text text-red-500" *ngIf="signupForm.get('email')?.errors?.['email']">
                         Email format should be abc@gmail.com</div>
                 </div>
@@ -44,9 +44,9 @@
 
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('contact')?.errors?.['required']) && (signupForm.get('contact')?.touched)">
-                        Contact no. should not blank</div>
+                        Contact Number required.</div>
                     <div class="form-text text-red-500" *ngIf="signupForm.get('contact')?.errors?.['pattern']">
-                        Contact number should be 10 digit only</div>
+                        Contact Number should contain 10 digits only.</div>
                 </div>
 
 
@@ -62,7 +62,7 @@
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('password')?.errors?.['required']) && (signupForm.get('password')?.touched)">
                         Password
-                        required*</div>
+                        required.</div>
                     <div class="form-text text-red-500" *ngIf="signupForm.get('password')?.errors?.['pattern']">Password
                         should contain 6-8 characters, One uppercase letter, One digit and One special character
                     </div>
@@ -80,14 +80,14 @@
                     <div class="form-text text-red-500"
                         *ngIf="(signupForm.get('confirmPassword')?.errors?.['required']) && (signupForm.get('confirmPassword')?.touched)">
                         Password
-                        should not blank</div>
+                        required.</div>
                     <div class="form-text text-red-500" *ngIf="validateSubmit() && !(signupForm.controls['confirmPassword'].invalid)">Password
-                        and Confirm Password are not same
+                        and Confirm Password must be same.
                     </div>
                 </div>
 
                 <!-- sign in button -->
-                <button type="submit" pButton pRipple label="Sign Up" icon="pi pi-user" [disabled]="validateSubmit() || form1?.invalid"
+                <button type="submit" pButton pRipple label="Sign Up" icon="pi pi-user"
                     class="w-full mt-3 p-button-warning"></button>
             </form>
         </div>

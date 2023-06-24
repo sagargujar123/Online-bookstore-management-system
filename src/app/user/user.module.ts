@@ -13,6 +13,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UserComponent,
     CheckoutComponent,
     HeaderComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,

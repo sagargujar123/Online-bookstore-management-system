@@ -24,4 +24,8 @@ export class OrderService {
   getOrderList(userId:any){
     return this.http.get(`${this.baseUrl}/order/user_order/${userId}`);
   }
+
+  getOrderByOrderId(orderId:any){
+    return this.http.get(`${this.baseUrl}/order/${orderId}`);
+  }
 }
